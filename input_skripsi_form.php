@@ -3,7 +3,7 @@
   // include "login.php";
   session_start();
   if($_SESSION['status'] !="login"){
-    header("location:login.php");
+    header("location:index.php");
   }
   include "connection.php";
 ?>
@@ -11,7 +11,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SIMPENDUK | Input Data</title>
+  <title>SKRIPSI | Input Data Skripsi</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -59,11 +59,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Input Data Kependudukan
+        Input Data Skripsi
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Input Data Kependudukan</li>
+        <li class="active">Input Data Skripsi</li>
       </ol>
     </section>
 
@@ -73,7 +73,7 @@
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-default">
         <div class="box-header with-border">
-          <h3 class="box-title">Masukkan data</h3>
+          <h3 class="box-title">Masukkan data skripsi</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -81,42 +81,25 @@
           </div>
         </div>
         <!-- /.box-header -->
-        <form role="form" method="post" action="input_process.php" autocomplete="off">
+        <form role="form" method="post" action="input_dosen_process.php" autocomplete="off">
         <div class="box-body">
           <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="key">Key Enkripsi</label>
-                <input type="text" class="form-control" name="key" placeholder="Masukkan Key Enkripsi">
-              </div>
-            </div>
             <div class="col-md-12">              
               <div class="col-md-6" style="padding-left: 0px">
-                <div class="form-group">
-                  <label for="nik">NIK</label>
-                  <input type="text" class="form-control" name="nik" placeholder="Masukkan NIK">
-                </div>
                 <div class="form-group">
                   <label for="nama">Nama</label>
                   <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama">
                 </div>
                 <div class="form-group">
-                  <label for="kelamin">Jenis Kelamin</label><br>
-                    <input type="radio" name="kelamin" class="minimal" value="Laki-Laki" checked>&nbsp Laki-Laki &nbsp&nbsp&nbsp
-                    <input type="radio" name="kelamin" class="minimal" value="Perempuan">&nbsp Perempuan
+                  <label for="npm">NPM</label>
+                  <input type="text" class="form-control" name="npm" placeholder="Masukkan NPM">
                 </div>
-              </div>
-              <div class="col-md-6" style="padding-right: 0px">
-                <div class="form-group" >
-                  <label for="nkk">No. KK</label>
-                  <input type="text" class="form-control" name="nkk" placeholder="Masukkan No. KK">
-                </div>
-                <div class="form-group">
-                  <label>Tempat Lahir</label>
-                  <select class="form-control select2" name="tempat_lahir" style="width: 100%;">
-                    <!-- <option selected="selected">Alabama</option> -->
+				<div class="form-group">
+                  <label>Program Studi</label>
+                  <select class="form-control select2" name="prodi" style="width: 100%;">
+                    <option disabled selected color="grey">Pilih Program Studi</option>
                     <?php
-                      $query = "SELECT * FROM tb_kota_lahir";
+                      $query = "SELECT * FROM tb_prodi";
                       $result = mysqli_query($conn, $query);
                       while ($row = mysqli_fetch_array($result)) {
                           echo "<option>" . $row[1] . "</option>";
@@ -125,22 +108,7 @@
                     ?>
                   </select>
                 </div>
-                <div class="form-group">
-                  <label>Tanggal Lahir</label>
-                  <div class="input-group date">
-                    <div class="input-group-addon">
-                      <i class="fa fa-calendar"></i>
-                    </div>
-                    <input type="text" class="form-control pull-right" id="datepicker" name="tanggal_lahir">
-                  </div>
-                </div>
-              </div>                             
-              <!-- /.form-group -->             
-              <div class="form-group">
-                <label>Alamat</label>
-                <textarea class="form-control" rows="3" name="alamat" placeholder="Masukkan Alamat"></textarea>
               </div>
-              <!-- /.form-group -->
             </div>
             <!-- /.col -->
           </div>

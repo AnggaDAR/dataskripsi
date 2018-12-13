@@ -3,7 +3,7 @@
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$dbname = "simpenduk";
+$dbname = "dataskripsi";
 
 $conn = mysqli_connect($hostname, $username, $password, $dbname);
 if ($conn) {

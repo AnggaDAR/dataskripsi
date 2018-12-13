@@ -16,11 +16,7 @@ if($cek>0){
 	$_SESSION['status'] = "login";
 	$_SESSION['profpic'] = $row['profpic'];
 	$_SESSION['role'] = $row['role'];
-	if($_SESSION['role'] == 'admin'){
-		header("location:home1.php");
-	} else if($_SESSION['role'] == 'student'){
-		header("location:home2.php");
-	}
+	header("location:home.php");
 }else{
 	header("location:index.php");
 }
