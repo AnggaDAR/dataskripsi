@@ -71,56 +71,100 @@
     <section class="content">
 
       <!-- SELECT2 EXAMPLE -->
-      <div class="box box-default">
-        <div class="box-header with-border">
-          <h3 class="box-title">Masukkan data skripsi</h3>
+	  <div class="box box-default">
+		<div class="box-header with-border">
+		  <h3 class="box-title">Masukkan data skripsi</h3>
 
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-          </div>
-        </div>
-        <!-- /.box-header -->
-        <form role="form" method="post" action="input_dosen_process.php" autocomplete="off">
-        <div class="box-body">
-          <div class="row">
-            <div class="col-md-12">              
-              <div class="col-md-6" style="padding-left: 0px">
-                <div class="form-group">
-                  <label for="nama">Nama</label>
-                  <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama">
+		  <div class="box-tools pull-right">
+			<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+			<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+		  </div>
+		</div>
+		<!-- /.box-header -->
+		<form role="form" method="post" action="input_dosen_process.php" autocomplete="off">
+		<div class="box-body">
+		  <div class="row">
+			<div class="col-md-12">              
+			  <div class="col-md-6" >
+				<h3 class="box-title">Data Mahasiswa</h3>
+				<div class="form-group">
+				  <label for="nama">Nama</label>
+				  <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama">
+				</div>
+				<div class="form-group">
+				  <label for="npm">NPM</label>
+				  <input type="text" class="form-control" name="npm" placeholder="Masukkan NPM">
+				</div>
+				<div class="form-group">
+				  <label>Program Studi</label>
+				  <select class="form-control select2" name="prodi" style="width: 100%;">
+					<option disabled selected color="grey">Pilih Program Studi</option>
+					<?php
+					  $query = "SELECT * FROM tb_prodi";
+					  $result = mysqli_query($conn, $query);
+					  while ($row = mysqli_fetch_array($result)) {
+						  echo "<option>" . $row[1] . "</option>";
+					  }
+					  mysqli_close($conn);
+					?>
+				  </select>
+				</div>
+			  </div>
+              <div class="col-md-6" >
+				<h3 class="box-title">Pelaksanaan Ujian Skripsi</h3>
+				<div class="form-group">
+                  <label>Tanggal Ujian</label>
+                  <div class="input-group date">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="text" class="form-control pull-right" id="datepicker" name="tanggal_lahir">
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="npm">NPM</label>
-                  <input type="text" class="form-control" name="npm" placeholder="Masukkan NPM">
+				<div class="bootstrap-timepicker">
+				  <div class="form-group">
+                    <label>Time picker:</label>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-clock-o"></i>
+                      </div>
+                      <input type="text" class="form-control timepicker">
+                    </div>
+                  <!-- /.input group -->
+                  </div>
+                <!-- /.form group -->
                 </div>
 				<div class="form-group">
-                  <label>Program Studi</label>
-                  <select class="form-control select2" name="prodi" style="width: 100%;">
-                    <option disabled selected color="grey">Pilih Program Studi</option>
-                    <?php
-                      $query = "SELECT * FROM tb_prodi";
-                      $result = mysqli_query($conn, $query);
-                      while ($row = mysqli_fetch_array($result)) {
-                          echo "<option>" . $row[1] . "</option>";
-                      }
-                      mysqli_close($conn);
-                    ?>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-          <button type="submit" class="btn btn-primary">Simpan</button>
-        </div>
-        </form>              
+				  <label for="npm">NPM</label>
+				  <input type="text" class="form-control" name="npm" placeholder="Masukkan NPM">
+				</div>
+				<div class="form-group">
+				  <label>Program Studi</label>
+				  <select class="form-control select2" name="prodi" style="width: 100%;">
+					<option disabled selected color="grey">Pilih Program Studi</option>
+					<?php
+					  $query = "SELECT * FROM tb_prodi";
+					  $result = mysqli_query($conn, $query);
+					  while ($row = mysqli_fetch_array($result)) {
+						  echo "<option>" . $row[1] . "</option>";
+					  }
+					  mysqli_close($conn);
+					?>
+				  </select>
+				</div>
 
-      </div>
+			  </div>
+			</div>
+			<!-- /.col -->
+		  </div>
+		  <!-- /.row -->
+		</div>
+		<!-- /.box-body -->
+		<div class="box-footer">
+		  <button type="submit" class="btn btn-primary">Simpan</button>
+		</div>
+		</form>   
+	  </div>
       <!-- /.box -->      
     </section>
     <!-- /.content -->
@@ -231,6 +275,7 @@
 
     //Timepicker
     $('.timepicker').timepicker({
+	    format:'H:mm',
       showInputs: false
     })
   })
