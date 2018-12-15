@@ -43,7 +43,7 @@
           </a>          
         </li>
         <li>
-          <a href="input_form.php">
+          <a href="input_skripsi_form.php">
             <i class="fa fa-files-o"></i>
             <span>Input Data Skripsi</span>
           </a>          
