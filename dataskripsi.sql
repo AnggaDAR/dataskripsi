@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2018 at 09:15 AM
+-- Generation Time: Dec 15, 2018 at 08:58 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -38,7 +38,10 @@ CREATE TABLE `tb_dosen` (
 --
 
 INSERT INTO `tb_dosen` (`nik`, `nama`) VALUES
-('123', 'agus');
+('123', 'agus'),
+('124', 'bani'),
+('125', 'caca'),
+('126', 'dede');
 
 -- --------------------------------------------------------
 
@@ -74,34 +77,6 @@ INSERT INTO `tb_enc_data_penduduk` (`nik`, `nkk`, `nama`, `jenis_kelamin`, `alam
 ('33a838c63eadf25707153135d049b723', '33a838c6bb7d6c379966137392ee9410', '7ec04b3078e4e0ab', '9458e4c81af970df78e4e0ab', '226662e38ead1ef3d36a20b9474df730ef10b0a6a223f7746095e6ac76f8426698bc89c896e4ca379fbdc8923ad2e9dc18a016f8d5f96fb8c8a5221dbdc7b4ce896e021da1539a38f60c9733291a1d1a4a7527c55c65e8fcd7142bb3', 'cda3213f95168b25f17fbdc0', '73fc7c0e0d0e61fdc37be8de'),
 ('33a838c63eadf25707153135e0274ea4', '33a838c6bb7d6c379966137392ee9410', 'affa9a25', '9458e4c81af970df78e4e0ab', '226662e38ead1ef3d36a20b9474df730ef10b0a6a223f7746095e6ac76f8426698bc89c896e4ca379fbdc8923ad2e9dc18a016f8d5f96fb8c8a5221dbdc7b4ce896e021da1539a38f60c9733291a1d1a4a7527c55c65e8fcd7142bb3', 'cda3213f967283ec1cd3829bd4cba1f8', '73fc7c0e0d0e61fdb787f5b3'),
 ('33a838c63eadf25707153135f265f31d', '33a838c6bb7d6c379966137319bfa634', '7ec04b3082104233', '4486d42bb63956549f1cfd25', '226662e38ead1ef3d36a20b9474df730ef10b0a6a223f7746095e6ac76f8426698bc89c8e437a6e29fbdc8923ad2e9dc18a016f8d5f96fb8c8a5221dbdc7b4ce896e021da1539a38f60c9733291a1d1a4a7527c55c65e8fcd7142bb3', 'cda3213f777807d75b2b5fe09f1cfd25', '73fc7c0e0d0e61fd048f9567');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_pesan`
---
-
-CREATE TABLE `tb_pesan` (
-  `id_pesan` int(11) NOT NULL,
-  `username_pengirim` varchar(11) NOT NULL,
-  `username_penerima` varchar(11) NOT NULL,
-  `subject` varchar(50) NOT NULL,
-  `pesan` text NOT NULL,
-  `waktu_kirim` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_pesan`
---
-
-INSERT INTO `tb_pesan` (`id_pesan`, `username_pengirim`, `username_penerima`, `subject`, `pesan`, `waktu_kirim`) VALUES
-(1, 'admin1', 'admin2', 'Tes', 'hanya Tes', '2018-10-08 09:34:00'),
-(2, 'admin2', 'admin1', 'tes2', 'coba', '2018-10-08 09:35:00'),
-(5, 'admin1', 'admin2', 'ssss', 'tyjcghkhj', '2018-10-08 09:36:51'),
-(6, 'admin2', 'admin1', 'jhhhlhj', 'rsfgxghhjh', '2018-10-08 09:36:51'),
-(7, 'admin2', 'admin1', 'coba', '<p>halo</p>', '2018-10-08 14:58:51'),
-(8, 'admin2', 'admin1', 'tes', '<p>hanya tes</p>', '2018-10-08 15:38:35'),
-(9, 'admin1', 'admin2', 'testestes', '<p>lalala</p>', '2018-10-16 15:35:54');
 
 -- --------------------------------------------------------
 
@@ -149,6 +124,30 @@ INSERT INTO `tb_prodi` (`kode_prodi`, `nama_prodi`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_ruang`
+--
+
+CREATE TABLE `tb_ruang` (
+  `id_ruang` int(11) NOT NULL,
+  `nama_ruang` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_ruang`
+--
+
+INSERT INTO `tb_ruang` (`id_ruang`, `nama_ruang`) VALUES
+(1, 'GP601'),
+(2, 'GP602'),
+(3, 'GP603'),
+(4, 'GP604'),
+(5, 'GP605'),
+(6, 'GP606'),
+(7, 'GP607');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_user`
 --
 
@@ -186,16 +185,16 @@ ALTER TABLE `tb_enc_data_penduduk`
   ADD PRIMARY KEY (`nik`);
 
 --
--- Indexes for table `tb_pesan`
---
-ALTER TABLE `tb_pesan`
-  ADD PRIMARY KEY (`id_pesan`);
-
---
 -- Indexes for table `tb_prodi`
 --
 ALTER TABLE `tb_prodi`
   ADD PRIMARY KEY (`kode_prodi`);
+
+--
+-- Indexes for table `tb_ruang`
+--
+ALTER TABLE `tb_ruang`
+  ADD PRIMARY KEY (`id_ruang`);
 
 --
 -- Indexes for table `tb_user`
@@ -208,10 +207,10 @@ ALTER TABLE `tb_user`
 --
 
 --
--- AUTO_INCREMENT for table `tb_pesan`
+-- AUTO_INCREMENT for table `tb_ruang`
 --
-ALTER TABLE `tb_pesan`
-  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+ALTER TABLE `tb_ruang`
+  MODIFY `id_ruang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
