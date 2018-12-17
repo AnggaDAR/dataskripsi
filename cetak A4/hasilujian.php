@@ -47,10 +47,8 @@ $pdf->Ln(2);
 $pdf->SetFont('arial','',12);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');
-$pdf->Cell(70,6,'Setelah di selenggarakannya ujian Skripsi / Tugas Akhir bagi mahasiswa yang dilaksanakan',0,1,'L');
- $pdf->Cell(10,6,'',0,0,'L');
-$pdf->Cell(70,6,'pada :',0,1,'L');
-$pdf->Ln(4);
+$pdf->Cell(70,6,'Setelah di selenggarakannya ujian Skripsi / Tugas Akhir bagi mahasiswa yang dilaksanakan pada :',0,1,'L');
+$pdf->Ln(2);
 $pdf->SetFont('arial','B',12);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');
@@ -87,7 +85,7 @@ $pdf->Cell(2,6,': Ke - 1 / ke-2 /',0,0,'L');
 $pdf->Cell(70,6,'',0,1,'L');
 
 
-$pdf->Ln(4);
+$pdf->Ln(2);
 $pdf->SetFont('arial','B',12);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');
@@ -139,7 +137,7 @@ $pdf->Cell(60,6,'',1,0,'L',1);
 $pdf->Cell(40,6,'',1,0,'L',1);
 $pdf->Cell(30,6,'',1,1,'L',1);
 
-$pdf->Ln(4);
+$pdf->Ln(2);
 $pdf->SetFont('arial','B',12);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');
@@ -167,7 +165,7 @@ $pdf->Cell(70,6,'Program Studi',0,0,'L');
 $pdf->Cell(2,6,':',0,0,'L');
 $pdf->Cell(70,6,'',0,1,'L');
 
-$pdf->Ln(4);
+$pdf->Ln(2);
 $pdf->SetFont('arial','B',12);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');
@@ -179,7 +177,7 @@ $pdf->SetFont('arial','B',12);
  $pdf->Cell(20,6,'',0,0,'L');
 $pdf->Cell(70,6,'JUDUS SAYA ',0,1,'L');
 
-$pdf->Ln(4);
+$pdf->Ln(2);
 $pdf->SetFont('arial','B',12);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');

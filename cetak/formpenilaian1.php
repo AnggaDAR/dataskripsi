@@ -3,7 +3,7 @@
 include'../fpdf181/fpdf.php';
 
 $pdf = new FPDF();
-$pdf->AddPage('P','A4');
+$pdf->AddPage('P',array(210,330));
 // $pdf = new FPDF('',    // mode - default ''
 //  '',    // format - A4, for example, default ''
 //  '',     // font size - default 0
@@ -64,14 +64,14 @@ $pdf->Cell(70,6,'',0,1,'L');
 $pdf->Cell(70,6,'Program Studi',0,0,'L');
 $pdf->Cell(2,6,':',0,0,'L');
 $pdf->Cell(70,6,'',0,1,'L');
-//$pdf->Ln(2);
+$pdf->Ln(2);
 $pdf->SetFont('arial','B',12);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');
 $pdf->Cell(60,6,'Pelaksanaan Ujian Skripsi',0,0,'L');
 $pdf->Cell(2,6,':',0,0,'L');
 $pdf->Cell(70,6,'',0,1,'L');
-//$pdf->Ln(2);
+$pdf->Ln(2);
 $pdf->SetFont('arial','',12);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');
@@ -108,9 +108,9 @@ $pdf->Cell(70,6,'NIP / NPP / NIDK',0,0,'L');
 $pdf->Cell(2,6,':',0,0,'L');
 $pdf->Cell(70,6,'',0,1,'L');
 
-$pdf->Ln(1.5);
+$pdf->Ln(2);
 $pdf->SetLineWidth(0.2);
-$pdf->SetFont('Arial','B',10);
+$pdf->SetFont('Arial','B',11);
 $pdf->Cell(10,6,'',0,0,'C');
 $pdf->SetFillColor(192,192,192);
 // $pdf->Cell(8,6,'No',1,0,'C',1);
@@ -118,7 +118,7 @@ $pdf->Cell(78,6,'KRITERIA PENILAIAN',1,0,'C',1);
 $pdf->Cell(40,6,'NILAI',1,0,'C',1);
 $pdf->Cell(60,6,'KETERANGAN',1,1,'C',1);
 
-$pdf->SetFont('Arial','',10);
+$pdf->SetFont('Arial','',11);
 $pdf->Cell(10,6,'',0,0,'C');
 $pdf->SetFillColor(256,256,256);
 // $pdf->Cell(8,6,'No',1,0,'C',1);
@@ -195,16 +195,17 @@ $pdf->Cell(10,6,'',0,0,'C');
 $pdf->Cell(40,6,'Catatan / Revisi Penguji I',0,1,'L',1);
 
 $pdf->SetLineWidth(0.1);
-$pdf->Line(20,186,198,186);
-$pdf->Line(20,194,198,194);
+$pdf->Line(20,190,198,190);
+$pdf->Line(20,198,198,198);
+$pdf->Line(20,206,198,206);
 
-$pdf->Ln(15);
+$pdf->Ln(35);
 $pdf->SetFont('Arial','',12);
 $pdf->Cell(10,6,'',0,0,'C');
 $pdf->Cell(8,6,'',0,0,'C',1);
 $pdf->Cell(110,6,'',0,0,'L',1);
 $pdf->Cell(40,6,'Pengesahan Penguji I',0,1,'L',1);
-$pdf->Ln(10);
+$pdf->Ln(18);
 $pdf->SetFont('Arial','U',12);
 $pdf->Cell(10,6,'',0,0,'C');
 $pdf->Cell(8,6,'',0,0,'C',1);
@@ -218,7 +219,7 @@ $pdf->Cell(20,6,'NIP/NPP.',0,0,'L',1);
 $pdf->Cell(50,6,'',0,1,'L',1);
 
 
-$pdf->SetFont('Arial','',10);
+$pdf->SetFont('Arial','',11);
 $pdf->Cell(10,6,'',0,0,'C');
 $pdf->Cell(30,6,'Keterangan',0,0,'L',1);
 $pdf->Cell(10,6,':',0,0,'L',1);

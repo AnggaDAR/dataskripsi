@@ -3,7 +3,7 @@
 include'../fpdf181/fpdf.php';
 
 $pdf = new FPDF();
-$pdf->AddPage('P','A4');
+$pdf->AddPage('P',array(210,330));
 // $pdf = new FPDF('',    // mode - default ''
 //  '',    // format - A4, for example, default ''
 //  '',     // font size - default 0

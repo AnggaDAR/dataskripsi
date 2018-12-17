@@ -79,19 +79,19 @@ $pdf->Cell(100,6,'Uraian Revisi',1,0,'C',1);
 $pdf->Cell(60,6,'Keterangan',1,1,'C',1);
 $pdf->Cell(10,6,'',0,0,'C');
 $pdf->SetFillColor(256,256,256);
-$pdf->Cell(8,215,'',1,0,'C',1);
-$pdf->Cell(100,215,'',1,0,'C',1);
-$pdf->Cell(60,215,'',1,0,'C',1);
+$pdf->Cell(8,185,'',1,0,'C',1);
+$pdf->Cell(100,185,'',1,0,'C',1);
+$pdf->Cell(60,185,'',1,0,'C',1);
 
 
-$pdf->Ln(220);
+$pdf->Ln(190);
 $pdf->SetFont('Arial','',12);
 $pdf->SetFillColor(256,256,256);
 $pdf->Cell(10,6,'',0,0,'C');
 $pdf->Cell(8,6,'',0,0,'C',1);
 $pdf->Cell(110,6,'',0,0,'L',1);
-$pdf->Cell(40,6,'Pengesahan Penguji II',0,1,'L',1);
-$pdf->Ln(15);
+$pdf->Cell(40,6,'Pengesahan Penguji III',0,1,'L',1);
+$pdf->Ln(10);
 $pdf->SetFont('Arial','U',12);
 $pdf->Cell(10,6,'',0,0,'C');
 $pdf->Cell(8,6,'',0,0,'C',1);
@@ -125,5 +125,5 @@ $nomor=0;
 // 	$pdf->Cell(25,4,$data['jeniskelamin'],1,0,'L');
 // 	$pdf->Cell(87,4,$data['alamat'],1,1,'L');
 // }
-$pdf->Output('formrevisi2.pdf','I');
+$pdf->Output('formpenilaian.pdf','I');
 ?>			
