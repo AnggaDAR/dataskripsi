@@ -97,7 +97,7 @@ $pdf->Cell(70,6,'',0,1,'L');
 //$pdf->SetFont('arial','',12);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');
-$pdf->Cell(70,6,'Nama Dosen Penguji III',0,0,'L');
+$pdf->Cell(70,6,'Nama Dosen Penguji II',0,0,'L');
 $pdf->Cell(2,6,':',0,0,'L');
 $pdf->Cell(70,6,'',0,1,'L');
 //$pdf->Ln(2);
@@ -192,7 +192,7 @@ $pdf->Cell(60,6,'',1,1,'C',1);
 
 $pdf->SetFont('Arial','B',12);
 $pdf->Cell(10,6,'',0,0,'C');
-$pdf->Cell(40,6,'Catatan / Revisi Penguji III',0,1,'L',1);
+$pdf->Cell(40,6,'Catatan / Revisi Penguji II',0,1,'L',1);
 
 $pdf->SetLineWidth(0.1);
 $pdf->Line(20,186,198,186);
@@ -203,7 +203,7 @@ $pdf->SetFont('Arial','',12);
 $pdf->Cell(10,6,'',0,0,'C');
 $pdf->Cell(8,6,'',0,0,'C',1);
 $pdf->Cell(110,6,'',0,0,'L',1);
-$pdf->Cell(40,6,'Pengesahan Penguji III',0,1,'L',1);
+$pdf->Cell(40,6,'Pengesahan Penguji II',0,1,'L',1);
 $pdf->Ln(10);
 $pdf->SetFont('Arial','U',12);
 $pdf->Cell(10,6,'',0,0,'C');
@@ -271,5 +271,5 @@ $nomor=0;
 // 	$pdf->Cell(25,4,$data['jeniskelamin'],1,0,'L');
 // 	$pdf->Cell(87,4,$data['alamat'],1,1,'L');
 // }
-$pdf->Output('formpenilaian.pdf','I');
+$pdf->Output('formpenilaian2.pdf','I');
 ?>			
