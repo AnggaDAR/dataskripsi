@@ -1,7 +1,22 @@
 <?php
 // include'../koneksi.php';
+session_start();
+if($_SESSION['status'] !="login"){
+header("location:login.php");
+}
+include "../connection.php";
 include'../fpdf181/fpdf.php';
 
+$id = $_GET['id'];
+$query ="SELECT u.npm, u.nama, u.judul, u.nip_penguji1, d1.nama as nama_penguji1, u.status_data 
+    FROM tb_ujian_skripsi as u
+    INNER JOIN tb_dosen as d1 ON d1.nip = u.nip_penguji1
+      
+    WHERE npm='".$id."'";
+
+$result = mysqli_query($conn,$query);
+
+while($data = mysqli_fetch_array($result)){
 $pdf = new FPDF();
 $pdf->AddPage('P',array(210,330));
 // $pdf = new FPDF('',    // mode - default ''
@@ -46,23 +61,24 @@ $pdf->Ln(2);
 $pdf->SetFont('arial','',12);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');
-$pdf->Cell(70,6,'Nama Mahasiswa',0,0,'L');
+$pdf->Cell(50,6,'Nama Mahasiswa',0,0,'L');
 $pdf->Cell(2,6,':',0,0,'L');
-$pdf->Cell(70,6,'',0,1,'L');
+$pdf->Cell(70,6,$data['nama'],0,1,'L');
 // $pdf->Ln(2);
 //$pdf->SetFont('arial','',11);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');
-$pdf->Cell(70,6,'N P M',0,0,'L');
+$pdf->Cell(50,6,'N P M',0,0,'L');
 $pdf->Cell(2,6,':',0,0,'L');
-$pdf->Cell(70,6,'',0,1,'L');
+$pdf->Cell(70,6,$data['npm'],0,1,'L');
 //$pdf->Ln(2);
 //$pdf->SetFont('arial','',12);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');
-$pdf->Cell(70,6,'Judul',0,0,'L');
+$pdf->Cell(50,6,'Judul',0,0,'L');
 $pdf->Cell(2,6,':',0,0,'L');
-$pdf->Cell(70,6,'JUDUL SAYA',0,1,'L');	
+$pdf->MultiCell(130,6,$data['judul'],0,'L',false);
+// $pdf->Cell(70,6,$data['judul'],0,1,'L');	
 // $pdf->setFont('Arial','B',8);
 // $pdf->Cell(187,4,'Tanggal Cetak '.$tgl,0,1,'C');
 // $pdf->SetFont('arial','B',12);
@@ -79,30 +95,30 @@ $pdf->Cell(100,6,'Uraian Revisi',1,0,'C',1);
 $pdf->Cell(60,6,'Keterangan',1,1,'C',1);
 $pdf->Cell(10,6,'',0,0,'C');
 $pdf->SetFillColor(256,256,256);
-$pdf->Cell(8,215,'',1,0,'C',1);
-$pdf->Cell(100,215,'',1,0,'C',1);
-$pdf->Cell(60,215,'',1,0,'C',1);
+$pdf->Cell(8,190,'',1,0,'C',1);
+$pdf->Cell(100,190,'',1,0,'C',1);
+$pdf->Cell(60,190,'',1,0,'C',1);
 
 
-$pdf->Ln(220);
+$pdf->Ln(195);
 $pdf->SetFont('Arial','',12);
 $pdf->SetFillColor(256,256,256);
 $pdf->Cell(10,6,'',0,0,'C');
 $pdf->Cell(8,6,'',0,0,'C',1);
-$pdf->Cell(110,6,'',0,0,'L',1);
+$pdf->Cell(100,6,'',0,0,'L',1);
 $pdf->Cell(40,6,'Pengesahan Penguji I',0,1,'L',1);
 $pdf->Ln(15);
 $pdf->SetFont('Arial','U',12);
 $pdf->Cell(10,6,'',0,0,'C');
 $pdf->Cell(8,6,'',0,0,'C',1);
-$pdf->Cell(110,6,'',0,0,'L',1);
-$pdf->Cell(40,6,'Bambang Agus',0,1,'L',1);
+$pdf->Cell(100,6,'',0,0,'L',1);
+$pdf->Cell(40,6,$data['nama_penguji1'],0,1,'L',1);
 $pdf->SetFont('Arial','',12);
 $pdf->Cell(10,6,'',0,0,'C');
 $pdf->Cell(8,6,'',0,0,'C',1);
-$pdf->Cell(110,6,'',0,0,'L',1);
+$pdf->Cell(100,6,'',0,0,'L',1);
 $pdf->Cell(20,6,'NIP/NPP.',0,0,'L',1);
-$pdf->Cell(50,6,'',0,1,'L',1);
+$pdf->Cell(50,6,$data['nip_penguji1'],0,1,'L',1);
 
 
 $pdf->SetFont('Arial','',10);
@@ -126,4 +142,5 @@ $nomor=0;
 // 	$pdf->Cell(87,4,$data['alamat'],1,1,'L');
 // }
 $pdf->Output('formrevisi1.pdf','I');
+}
 ?>			

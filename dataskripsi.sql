@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2018 at 08:58 AM
+-- Generation Time: Dec 19, 2018 at 09:55 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tb_dosen` (
-  `nik` varchar(16) NOT NULL,
+  `nip` varchar(32) NOT NULL,
   `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -37,46 +37,12 @@ CREATE TABLE `tb_dosen` (
 -- Dumping data for table `tb_dosen`
 --
 
-INSERT INTO `tb_dosen` (`nik`, `nama`) VALUES
-('123', 'agus'),
-('124', 'bani'),
-('125', 'caca'),
-('126', 'dede');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_enc_data_penduduk`
---
-
-CREATE TABLE `tb_enc_data_penduduk` (
-  `nik` varchar(32) NOT NULL,
-  `nkk` varchar(32) NOT NULL,
-  `nama` varchar(128) NOT NULL,
-  `jenis_kelamin` varchar(24) NOT NULL,
-  `alamat` varchar(256) NOT NULL,
-  `tempat_lahir` varchar(48) NOT NULL,
-  `tanggal_lahir` varchar(24) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_enc_data_penduduk`
---
-
-INSERT INTO `tb_enc_data_penduduk` (`nik`, `nkk`, `nama`, `jenis_kelamin`, `alamat`, `tempat_lahir`, `tanggal_lahir`) VALUES
-('33a838c63eadf257071531352242bc66', '33a838c6bb7d6c379966137392ee9410', '9df77192', '9458e4c81af970df78e4e0ab', '226662e38ead1ef3d36a20b9474df730ef10b0a6a223f7746095e6ac76f8426698bc89c896e4ca379fbdc8923ad2e9dc18a016f8d5f96fb8c8a5221dbdc7b4ce896e021da1539a38f60c9733291a1d1a4a7527c55c65e8fcd7142bb3', 'cda3213f16b1c13e8798625f', '73fc7c0e0d0e61fdc37be8de'),
-('33a838c63eadf25707153135702f55e4', '33a838c6bb7d6c379966137319bfa634', 'def95fe1', '4486d42bb63956549f1cfd25', '226662e38ead1ef3d36a20b9474df730ef10b0a6a223f7746095e6ac76f8426698bc89c8e437a6e29fbdc8923ad2e9dc18a016f8d5f96fb8c8a5221dbdc7b4ce896e021da1539a38f60c9733291a1d1a4a7527c55c65e8fcd7142bb3', 'cf3d346abef89fb93d72076356c5aa56', '73fc7c0efa05b2b0b787f5b3'),
-('33a838c63eadf257071531358f3e0527', '33a838c6bb7d6c379966137319bfa634', '5c6a33e4', '4486d42bb63956549f1cfd25', '226662e38ead1ef3d36a20b9474df730ef10b0a6a223f7746095e6ac76f8426698bc89c8e437a6e29fbdc8923ad2e9dc18a016f8d5f96fb8c8a5221dbdc7b4ce896e021da1539a38f60c9733291a1d1a4a7527c55c65e8fcd7142bb3', 'cda3213f93bba26063811da8f21da3f4', '73fc7c0efa05b2b071aae47e'),
-('33a838c63eadf257071531359424996a', '33a838c6bb7d6c379966137392ee9410', '44d529a0f21da3f4', '4486d42bb63956549f1cfd25', '226662e38ead1ef3d36a20b9474df730ef10b0a6a223f7746095e6ac76f8426698bc89c896e4ca379fbdc8923ad2e9dc18a016f8d5f96fb8c8a5221dbdc7b4ce896e021da1539a38f60c9733291a1d1a4a7527c55c65e8fcd7142bb3', 'cf3d346abef89fb947f027dc391bfde39f1cfd25', '73fc7c0e0d0e61fda204eb89'),
-('33a838c63eadf257071531359ff849ae', '33a838c6bb7d6c379966137392ee9410', '2f806e7f8012a5e2', '9458e4c81af970df78e4e0ab', '226662e38ead1ef3d36a20b9474df730ef10b0a6a223f7746095e6ac76f8426698bc89c896e4ca379fbdc8923ad2e9dc18a016f8d5f96fb8c8a5221dbdc7b4ce896e021da1539a38f60c9733291a1d1a4a7527c55c65e8fcd7142bb3', 'cf3d346abef89fb947f027dc391bfde39f1cfd25', '73fc7c0e0d0e61fdb787f5b3'),
-('33a838c63eadf25707153135a613edf8', '33a838c6bb7d6c379966137392ee9410', '87a4a9e7330a5a7c', '9458e4c81af970df78e4e0ab', '226662e38ead1ef3d36a20b9474df730ef10b0a6a223f7746095e6ac76f8426698bc89c896e4ca379fbdc8923ad2e9dc18a016f8d5f96fb8c8a5221dbdc7b4ce896e021da1539a38f60c9733291a1d1a4a7527c55c65e8fcd7142bb3', 'cf3d346abef89fb9e8937c42d01e015fa58942ed', '73fc7c0e0d0e61fdb787f5b3'),
-('33a838c63eadf25707153135bbd605e5', '33a838c6bb7d6c379966137392ee9410', 'a1dc8bd14f0523df', '9458e4c81af970df78e4e0ab', '226662e38ead1ef3d36a20b9474df730ef10b0a6a223f7746095e6ac76f8426698bc89c896e4ca379fbdc8923ad2e9dc18a016f8d5f96fb8c8a5221dbdc7b4ce896e021da1539a38f60c9733291a1d1a4a7527c55c65e8fcd7142bb3', 'cf3d346abef89fb9ff81c34a059bdda3', '73fc7c0e0d0e61fdb787f5b3'),
-('33a838c63eadf25707153135c4681e1e', '33a838c6bb7d6c379966137319bfa634', '167fbf884f0523df', '9458e4c81af970df78e4e0ab', '226662e38ead1ef3d36a20b9474df730ef10b0a6a223f7746095e6ac76f8426698bc89c8e437a6e29fbdc8923ad2e9dc18a016f8d5f96fb8c8a5221dbdc7b4ce896e021da1539a38f60c9733291a1d1a4a7527c55c65e8fcd7142bb3', 'cf3d346abef89fb9f53d0045be0f0f9e74441cf3d7142bb3', '73fc7c0efa05b2b071aae47e'),
-('33a838c63eadf25707153135c964f5b9', '33a838c6bb7d6c379966137392ee9410', 'dd616d70fd931a85', '9458e4c81af970df78e4e0ab', '226662e38ead1ef3d36a20b9474df730ef10b0a6a223f7746095e6ac76f8426698bc89c896e4ca379fbdc8923ad2e9dc18a016f8d5f96fb8c8a5221dbdc7b4ce896e021da1539a38f60c9733291a1d1a4a7527c55c65e8fcd7142bb3', 'cf3d346abef89fb9f53d0045e57ff8e1', '73fc7c0e0d0e61fdb787f5b3'),
-('33a838c63eadf25707153135ce232c87', '33a838c6bb7d6c379966137319bfa634', 'd853e59f', '4486d42bb63956549f1cfd25', '226662e38ead1ef3d36a20b9474df730ef10b0a6a223f7746095e6ac76f8426698bc89c8e437a6e29fbdc8923ad2e9dc18a016f8d5f96fb8c8a5221dbdc7b4ce896e021da1539a38f60c9733291a1d1a4a7527c55c65e8fcd7142bb3', 'cf3d346abef89fb9db6950a03829e1335c050281', '73fc7c0efa05b2b0cedcbd2a'),
-('33a838c63eadf25707153135d049b723', '33a838c6bb7d6c379966137392ee9410', '7ec04b3078e4e0ab', '9458e4c81af970df78e4e0ab', '226662e38ead1ef3d36a20b9474df730ef10b0a6a223f7746095e6ac76f8426698bc89c896e4ca379fbdc8923ad2e9dc18a016f8d5f96fb8c8a5221dbdc7b4ce896e021da1539a38f60c9733291a1d1a4a7527c55c65e8fcd7142bb3', 'cda3213f95168b25f17fbdc0', '73fc7c0e0d0e61fdc37be8de'),
-('33a838c63eadf25707153135e0274ea4', '33a838c6bb7d6c379966137392ee9410', 'affa9a25', '9458e4c81af970df78e4e0ab', '226662e38ead1ef3d36a20b9474df730ef10b0a6a223f7746095e6ac76f8426698bc89c896e4ca379fbdc8923ad2e9dc18a016f8d5f96fb8c8a5221dbdc7b4ce896e021da1539a38f60c9733291a1d1a4a7527c55c65e8fcd7142bb3', 'cda3213f967283ec1cd3829bd4cba1f8', '73fc7c0e0d0e61fdb787f5b3'),
-('33a838c63eadf25707153135f265f31d', '33a838c6bb7d6c379966137319bfa634', '7ec04b3082104233', '4486d42bb63956549f1cfd25', '226662e38ead1ef3d36a20b9474df730ef10b0a6a223f7746095e6ac76f8426698bc89c8e437a6e29fbdc8923ad2e9dc18a016f8d5f96fb8c8a5221dbdc7b4ce896e021da1539a38f60c9733291a1d1a4a7527c55c65e8fcd7142bb3', 'cda3213f777807d75b2b5fe09f1cfd25', '73fc7c0e0d0e61fd048f9567');
+INSERT INTO `tb_dosen` (`nip`, `nama`) VALUES
+('057801172', 'Febrian Murti Dewanto, SE, M. Kom'),
+('147801434', 'Khoiriya Latifah, S. Kom, M. Kom'),
+('158801493', 'Mega Novita, Ph.D'),
+('1954101519820031003', 'Drs. Bambang Supriyadi, MP'),
+('196209191994031003', 'Ir. Agung Handayanto, M. Kom');
 
 -- --------------------------------------------------------
 
@@ -143,7 +109,39 @@ INSERT INTO `tb_ruang` (`id_ruang`, `nama_ruang`) VALUES
 (4, 'GP604'),
 (5, 'GP605'),
 (6, 'GP606'),
-(7, 'GP607');
+(7, 'GP607'),
+(8, 'GP608'),
+(9, 'GP609');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_ujian_skripsi`
+--
+
+CREATE TABLE `tb_ujian_skripsi` (
+  `npm` varchar(16) NOT NULL,
+  `nama` varchar(128) NOT NULL,
+  `prodi` varchar(64) NOT NULL,
+  `judul` varchar(512) NOT NULL,
+  `tanggal` varchar(32) NOT NULL,
+  `jam` varchar(8) NOT NULL,
+  `ruang` varchar(8) NOT NULL,
+  `status` varchar(16) NOT NULL,
+  `nip_ketua` varchar(32) NOT NULL,
+  `nip_sekretaris` varchar(32) NOT NULL,
+  `nip_penguji1` varchar(32) NOT NULL,
+  `nip_penguji2` varchar(32) NOT NULL,
+  `nip_penguji3` varchar(32) NOT NULL,
+  `status_data` varchar(16) NOT NULL DEFAULT 'BELUM VALID'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_ujian_skripsi`
+--
+
+INSERT INTO `tb_ujian_skripsi` (`npm`, `nama`, `prodi`, `judul`, `tanggal`, `jam`, `ruang`, `status`, `nip_ketua`, `nip_sekretaris`, `nip_penguji1`, `nip_penguji2`, `nip_penguji3`, `status_data`) VALUES
+('14670006', 'Agung Nur Wahyudi', 'Informatika S1', 'Sistem Pendukung Keputusan Penentu Status Warga Dengan Metode Simple Multi Atribute Rotin Technique (SMART) Di Desa Tawangsari Rembang', 'Selasa, 04 Desember 2018', '16:00', 'GP609', 'Ke-1', '1954101519820031003', '057801172', '158801493', '196209191994031003', '147801434', 'BELUM VALID');
 
 -- --------------------------------------------------------
 
@@ -153,6 +151,7 @@ INSERT INTO `tb_ruang` (`id_ruang`, `nama_ruang`) VALUES
 
 CREATE TABLE `tb_user` (
   `username` varchar(20) NOT NULL,
+  `nama` varchar(128) NOT NULL,
   `password` varchar(100) NOT NULL,
   `profpic` varchar(100) NOT NULL,
   `role` varchar(10) NOT NULL
@@ -162,11 +161,10 @@ CREATE TABLE `tb_user` (
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`username`, `password`, `profpic`, `role`) VALUES
-('admin1', '0192023a7bbd73250516f069df18b500', 'dist/img/user2-160x160.jpg', 'admin'),
-('admin2', '0192023a7bbd73250516f069df18b500', 'dist/img/user1-128x128.jpg', 'admin'),
-('student1', 'ad6a280417a0f533d8b670c61667e1a0', 'dist/img/user2-160x160.jpg', 'student'),
-('student2', 'ad6a280417a0f533d8b670c61667e1a0', 'dist/img/user1-128x128.jpg', 'student');
+INSERT INTO `tb_user` (`username`, `nama`, `password`, `profpic`, `role`) VALUES
+('14670006', 'Agung Nur Wahyudi', 'student123', 'dist/img/user2-160x160.jpg', 'student'),
+('admin1', 'Admin 1', 'admin123', 'dist/img/user2-160x160.jpg', 'admin'),
+('admin2', 'Admin 2', 'admin123', 'dist/img/user1-128x128.jpg', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -176,13 +174,7 @@ INSERT INTO `tb_user` (`username`, `password`, `profpic`, `role`) VALUES
 -- Indexes for table `tb_dosen`
 --
 ALTER TABLE `tb_dosen`
-  ADD PRIMARY KEY (`nik`);
-
---
--- Indexes for table `tb_enc_data_penduduk`
---
-ALTER TABLE `tb_enc_data_penduduk`
-  ADD PRIMARY KEY (`nik`);
+  ADD PRIMARY KEY (`nip`);
 
 --
 -- Indexes for table `tb_prodi`
@@ -195,6 +187,12 @@ ALTER TABLE `tb_prodi`
 --
 ALTER TABLE `tb_ruang`
   ADD PRIMARY KEY (`id_ruang`);
+
+--
+-- Indexes for table `tb_ujian_skripsi`
+--
+ALTER TABLE `tb_ujian_skripsi`
+  ADD PRIMARY KEY (`npm`);
 
 --
 -- Indexes for table `tb_user`

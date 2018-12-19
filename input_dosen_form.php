@@ -87,8 +87,8 @@
             <div class="col-md-12">              
               <div class="col-md-6" style="padding-left: 0px">
                 <div class="form-group">
-                  <label for="nik">NIK</label>
-                  <input type="text" class="form-control" name="nik" placeholder="Masukkan NIK">
+                  <label for="nik">NIP / NPP</label>
+                  <input type="text" class="form-control" name="nip" placeholder="Masukkan NIP / NPP">
                 </div>
                 <div class="form-group">
                   <label for="nama">Nama</label>

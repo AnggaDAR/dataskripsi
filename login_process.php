@@ -2,7 +2,7 @@
 include "connection.php";
 
 $username = $_POST['username'];
-$password = md5($_POST['password']);
+$password = $_POST['password'];
 
 $query = "SELECT * FROM tb_user WHERE username='$username' AND password='$password'";
 $login = mysqli_query($conn, $query);
@@ -13,6 +13,7 @@ mysqli_close($conn);
 if($cek>0){
 	session_start();
 	$_SESSION['username'] = $username;
+	$_SESSION['nama'] = $row['nama'];
 	$_SESSION['status'] = "login";
 	$_SESSION['profpic'] = $row['profpic'];
 	$_SESSION['role'] = $row['role'];

@@ -67,7 +67,7 @@
           	      <?php 
                     echo $_SESSION['username']; 
                   ?>
-                  <small>Member since Nov. 2012</small>
+                  <small><?php echo $_SESSION['nama'];?></small>
                 </p>
               </li>
               <!-- Menu Footer-->

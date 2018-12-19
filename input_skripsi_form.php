@@ -81,160 +81,173 @@
 		  </div>
 		</div>
 		<!-- /.box-header -->
-		<form role="form" method="post" action="input_dosen_process.php" autocomplete="off">
+		<form role="form" method="post" action="input_skripsi_process.php" autocomplete="off">
 		<div class="box-body">
 		  <div class="row">
 			<div class="col-md-12">              
+        <h3 class="box-title">Data Mahasiswa</h3>
 			  <div class="col-md-6" >
-				<h3 class="box-title">Data Mahasiswa</h3>
-				<div class="form-group">
-				  <label for="nama">Nama</label>
-				  <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama">
-				</div>
-				<div class="form-group">
-				  <label for="npm">NPM</label>
-				  <input type="text" class="form-control" name="npm" placeholder="Masukkan NPM">
-				</div>
-				<div class="form-group">
-				  <label>Program Studi</label>
-				  <select class="form-control select2" name="prodi" style="width: 100%;">
-					<option disabled selected color="grey">Pilih Program Studi</option>
-					<?php
-					  $query = "SELECT * FROM tb_prodi";
-					  $result = mysqli_query($conn, $query);
-					  while ($row = mysqli_fetch_array($result)) {
-						  echo "<option>" . $row[1] . "</option>";
-					  }
-					  // mysqli_close($conn);
-					?>
-				  </select>
-				</div>
-			  </div>
+  				<div class="form-group">
+  				  <label for="nama">Nama</label>
+  				  <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama">
+  				</div>
+  				<div class="form-group">
+  				  <label for="npm">NPM</label>
+  				  <input type="text" class="form-control" name="npm" placeholder="Masukkan NPM">
+  				</div>
+        </div>
         <div class="col-md-6" >
-				<h3 class="box-title">Pelaksanaan Ujian Skripsi</h3>
-        <div class="form-group">
-          <label for="judul">Judul Skripsi</label>
-          <input type="text" class="form-control" name="status" placeholder="Masukkan Judul Skripsi">
-        </div>
-				<div class="form-group">
-          <label>Tanggal Ujian</label>
-          <div class="input-group date">
-            <div class="input-group-addon">
-              <i class="fa fa-calendar"></i>
-            </div>
-            <input type="text" class="form-control pull-right" id="datepicker" name="tanggal_lahir">
-          </div>
-        </div>
-				<div class="bootstrap-timepicker">
-				  <div class="form-group">
-            <label>Jam Ujian</label>
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-clock-o"></i>
-              </div>
-              <input type="text" class="form-control timepicker">
-            </div>
-          <!-- /.input group -->
-          </div>
-        <!-- /.form group -->
-        </div>
-        <div class="form-group">
-          <label>Ruang Ujian</label>
-          <select class="form-control select2" name="ruang" style="width: 100%;">
-          <option disabled selected color="grey">Pilih Ruang Ujian</option>
-          <?php
-            $query = "SELECT * FROM tb_ruang";
-            $result = mysqli_query($conn, $query);
-            while ($row = mysqli_fetch_array($result)) {
-              echo "<option>" . $row[1] . "</option>";
-            }
-            // mysqli_close($conn);
-          ?>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="status">Status Ujian</label>
-          <input type="text" class="form-control" name="status" placeholder="Masukkan Status Ujian">
-        </div>
-				<div class="form-group">
-				  <label>Ketua Sidang</label>
-				  <select class="form-control select2" name="ketua" style="width: 100%;">
-					<option disabled selected color="grey">Pilih Ketua Sidang</option>
-					<?php
-					  $query = "SELECT * FROM tb_dosen";
-					  $result = mysqli_query($conn, $query);
-					  while ($row = mysqli_fetch_array($result)) {
-						  echo "<option>" . $row[1] . "</option>";
-					  }
-					  // mysqli_close($conn);
-					?>
-				  </select>
-				</div>
-        <div class="form-group">
-          <label>Sekretaris</label>
-          <select class="form-control select2" name="sekretaris" style="width: 100%;">
-          <option disabled selected color="grey">Pilih Sekretaris</option>
-          <?php
-            $query = "SELECT * FROM tb_dosen";
-            $result = mysqli_query($conn, $query);
-            while ($row = mysqli_fetch_array($result)) {
-              echo "<option>" . $row[1] . "</option>";
-            }
-            // mysqli_close($conn);
-          ?>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Penguji 1</label>
-          <select class="form-control select2" name="penguji1" style="width: 100%;">
-          <option disabled selected color="grey">Pilih Penguji 1</option>
-          <?php
-            $query = "SELECT * FROM tb_dosen";
-            $result = mysqli_query($conn, $query);
-            while ($row = mysqli_fetch_array($result)) {
-              echo "<option>" . $row[1] . "</option>";
-            }
-            // mysqli_close($conn);
-          ?>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Penguji 2</label>
-          <select class="form-control select2" name="penguji2" style="width: 100%;">
-          <option disabled selected color="grey">Pilih Penguji 2</option>
-          <?php
-            $query = "SELECT * FROM tb_dosen";
-            $result = mysqli_query($conn, $query);
-            while ($row = mysqli_fetch_array($result)) {
-              echo "<option>" . $row[1] . "</option>";
-            }
-            // mysqli_close($conn);
-          ?>
-          </select>
-        </div><div class="form-group">
-          <label>Penguji 3</label>
-          <select class="form-control select2" name="penguji3" style="width: 100%;">
-          <option disabled selected color="grey">Pilih Penguji 3</option>
-          <?php
-            $query = "SELECT * FROM tb_dosen";
-            $result = mysqli_query($conn, $query);
-            while ($row = mysqli_fetch_array($result)) {
-              echo "<option>" . $row[1] . "</option>";
-            }
-            mysqli_close($conn);
-          ?>
-          </select>
-        </div>
-        
+  				<div class="form-group">
+  				  <label>Program Studi</label>
+  				  <select class="form-control select2" name="prodi" style="width: 100%;">
+  					<option disabled selected color="grey">Pilih Program Studi</option>
+  					<?php
+  					  $query = "SELECT * FROM tb_prodi";
+  					  $result = mysqli_query($conn, $query);
+  					  while ($row = mysqli_fetch_array($result)) {
+  						  echo "<option>" . $row[1] . "</option>";
+  					  }
+  					  // mysqli_close($conn);
+  					?>
+  				  </select>
+  				</div>
 			  </div>
+      </div>
+      <div class="col-md-12">
+        <h3 class="box-title">Pelaksanaan Ujian Skripsi</h3>
+        <div class="col-md-6" >
+          <div class="form-group">
+            <label for="judul">Judul Skripsi</label>
+            <input type="text" class="form-control" name="judul" placeholder="Masukkan Judul Skripsi">
+          </div>
+  				<div class="form-group">
+            <label>Tanggal Ujian</label>
+            <div class="input-group date">
+              <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+              </div>
+              <input type="text" class="form-control pull-right" id="datepicker" name="tanggal">
+            </div>
+          </div>
+  				<div class="bootstrap-timepicker">
+  				  <div class="form-group">
+              <label>Jam Ujian</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-clock-o"></i>
+                </div>
+                <input type="text" class="form-control timepicker" name="jam">
+              </div>
+            <!-- /.input group -->
+            </div>
+          <!-- /.form group -->
+          </div>
+          <div class="form-group">
+            <label>Ruang Ujian</label>
+            <select class="form-control select2" name="ruang" style="width: 100%;">
+            <option disabled selected color="grey">Pilih Ruang Ujian</option>
+            <?php
+              $query = "SELECT * FROM tb_ruang";
+              $result = mysqli_query($conn, $query);
+              while ($row = mysqli_fetch_array($result)) {
+                echo "<option>" . $row[1] . "</option>";
+              }
+              // mysqli_close($conn);
+            ?>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="status">Status Ujian</label>
+            <input type="text" class="form-control" name="status" placeholder="Masukkan Status Ujian">
+          </div>
+        </div>
+        <div class="col-md-6" >
+  				<div class="form-group">
+  				  <label>Ketua Sidang</label>
+  				  <select class="form-control select2" name="ketua" style="width: 100%;">
+  					<option disabled selected color="grey">Pilih Ketua Sidang</option>
+  					<?php
+  					  $query = "SELECT * FROM tb_dosen";
+  					  $result = mysqli_query($conn, $query);
+  					  while ($row = mysqli_fetch_array($result)) {
+  						  echo "<option>" .$row[0]." | ". $row[1] . "</option>";
+  					  }
+  					  // mysqli_close($conn);
+  					?>
+  				  </select>
+  				</div>
+          <div class="form-group">
+            <label>Sekretaris</label>
+            <select class="form-control select2" name="sekretaris" style="width: 100%;">
+            <option disabled selected color="grey">Pilih Sekretaris</option>
+            <?php
+              $query = "SELECT * FROM tb_dosen";
+              $result = mysqli_query($conn, $query);
+              while ($row = mysqli_fetch_array($result)) {
+                echo "<option>" .$row[0]." | ". $row[1] . "</option>";
+              }
+              // mysqli_close($conn);
+            ?>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Penguji 1</label>
+            <select class="form-control select2" name="penguji1" style="width: 100%;">
+            <option disabled selected color="grey">Pilih Penguji 1</option>
+            <?php
+              $query = "SELECT * FROM tb_dosen";
+              $result = mysqli_query($conn, $query);
+              while ($row = mysqli_fetch_array($result)) {
+                echo "<option>" .$row[0]." | ". $row[1] . "</option>";
+              }
+              // mysqli_close($conn);
+            ?>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Penguji 2</label>
+            <select class="form-control select2" name="penguji2" style="width: 100%;">
+            <option disabled selected color="grey">Pilih Penguji 2</option>
+            <?php
+              $query = "SELECT * FROM tb_dosen";
+              $result = mysqli_query($conn, $query);
+              while ($row = mysqli_fetch_array($result)) {
+                echo "<option>" .$row[0]." | ". $row[1] . "</option>";
+              }
+              // mysqli_close($conn);
+            ?>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Penguji 3</label>
+            <select class="form-control select2" name="penguji3" style="width: 100%;">
+            <option disabled selected color="grey">Pilih Penguji 3</option>
+            <?php
+              $query = "SELECT * FROM tb_dosen";
+              $result = mysqli_query($conn, $query);
+              while ($row = mysqli_fetch_array($result)) {
+                echo "<option>" .$row[0]." | ". $row[1] . "</option>";
+              }
+              mysqli_close($conn);
+            ?>
+            </select>
+          </div>
+        </div>
+			</div>
 			</div>
 			<!-- /.col -->
 		  </div>
 		  <!-- /.row -->
-		</div>
+		<!-- </div> -->
 		<!-- /.box-body -->
 		<div class="box-footer">
-		  <button type="submit" class="btn btn-primary">Simpan</button>
+      <div class="col-md-4" >
+      </div>
+      <div class="col-md-4" >
+  		  <button type="submit" class="btn btn-block btn-primary">Simpan</button>
+      </div>
+      <div class="col-md-4" >
+      </div>
 		</div>
 		</form>   
 	  </div>
@@ -269,6 +282,8 @@
 <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!-- bootstrap datepicker -->
 <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- bootstrap datepicker locale indonesian-->
+<script src="bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.id.js"></script>
 <!-- bootstrap color picker -->
 <script src="bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
 <!-- bootstrap time picker -->
@@ -321,7 +336,8 @@
 
     //Date picker
     $('#datepicker').datepicker({
-      format: "dd-mm-yyyy",
+      language: "id",
+      format: "DD, dd MM yyyy",
       autoclose: true
     })
 
@@ -348,7 +364,8 @@
 
     //Timepicker
     $('.timepicker').timepicker({
-	    format:'H:mm',
+	    showMeridian: false,
+      minuteStep: 1,
       showInputs: false
     })
   })

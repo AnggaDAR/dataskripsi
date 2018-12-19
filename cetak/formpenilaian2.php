@@ -1,6 +1,21 @@
 <?php
 // include'../koneksi.php';
+session_start();
+if($_SESSION['status'] !="login"){
+header("location:login.php");
+}
+include "../connection.php";
 include'../fpdf181/fpdf.php';
+$id = $_GET['id'];
+$query ="SELECT u.npm, u.nama, u.prodi, u.judul, u.tanggal, u.jam, u.ruang, u.status, u.nip_penguji2, d2.nama as nama_penguji2, u.status_data 
+    FROM tb_ujian_skripsi as u
+    INNER JOIN tb_dosen as d2 ON d2.nip = u.nip_penguji2
+      
+    WHERE npm='".$id."'";
+
+$result = mysqli_query($conn,$query);
+
+while($data = mysqli_fetch_array($result)){
 
 $pdf = new FPDF();
 $pdf->AddPage('P',array(210,330));
@@ -17,7 +32,7 @@ $pdf->AddPage('P',array(210,330));
 //  'P');  // L - landscape, P - portrait
 
 
-$tgl=date('Y/m/d');
+// $tgl=date('Y/m/d');
 $pdf->Image('../dist/img/upgris-logo.png',15,8,20,24);
 $pdf->setFont('arial','B',16);
 $pdf->Cell(147,6,'UNIVERSITAS PGRI SEMARANG',0,1,'C');
@@ -49,21 +64,21 @@ $pdf->SetFont('arial','',12);
  $pdf->Cell(10,6,'',0,0,'L');
 $pdf->Cell(70,6,'Nama Mahasiswa',0,0,'L');
 $pdf->Cell(2,6,':',0,0,'L');
-$pdf->Cell(70,6,'',0,1,'L');
+$pdf->Cell(70,6,$data['nama'],0,1,'L');
 // $pdf->Ln(2);
 //$pdf->SetFont('arial','',11);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');
 $pdf->Cell(70,6,'N P M',0,0,'L');
 $pdf->Cell(2,6,':',0,0,'L');
-$pdf->Cell(70,6,'',0,1,'L');
+$pdf->Cell(70,6,$data['npm'],0,1,'L');
 //$pdf->Ln(2);
 //$pdf->SetFont('arial','',12);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');
 $pdf->Cell(70,6,'Program Studi',0,0,'L');
 $pdf->Cell(2,6,':',0,0,'L');
-$pdf->Cell(70,6,'',0,1,'L');
+$pdf->Cell(70,6,$data['prodi'],0,1,'L');
 $pdf->Ln(2);
 $pdf->SetFont('arial','B',12);
  //$pdf->SetFillColor(256,256,256);
@@ -77,7 +92,7 @@ $pdf->SetFont('arial','',12);
  $pdf->Cell(10,6,'',0,0,'L');
 $pdf->Cell(70,6,'Hari, Tanggal',0,0,'L');
 $pdf->Cell(2,6,':',0,0,'L');
-$pdf->Cell(70,6,'',0,1,'L');
+$pdf->Cell(70,6,$data['tanggal'],0,1,'L');
 
 //$pdf->Ln(2);
 //$pdf->SetFont('arial','',11);
@@ -85,28 +100,28 @@ $pdf->Cell(70,6,'',0,1,'L');
  $pdf->Cell(10,6,'',0,0,'L');
 $pdf->Cell(70,6,'Waktu',0,0,'L');
 $pdf->Cell(2,6,':',0,0,'L');
-$pdf->Cell(70,6,'',0,1,'L');
+$pdf->Cell(70,6,$data['jam'],0,1,'L');
 //$pdf->Ln(2);
 //$pdf->SetFont('arial','',12);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');
 $pdf->Cell(70,6,'Ruang',0,0,'L');
 $pdf->Cell(2,6,':',0,0,'L');
-$pdf->Cell(70,6,'',0,1,'L');
+$pdf->Cell(70,6,$data['ruang'],0,1,'L');
 // $pdf->Ln(2);
 //$pdf->SetFont('arial','',12);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');
 $pdf->Cell(70,6,'Nama Dosen Penguji II',0,0,'L');
 $pdf->Cell(2,6,':',0,0,'L');
-$pdf->Cell(70,6,'',0,1,'L');
+$pdf->Cell(70,6,$data['nama_penguji2'],0,1,'L');
 //$pdf->Ln(2);
 //$pdf->SetFont('arial','',12);
  //$pdf->SetFillColor(256,256,256);
  $pdf->Cell(10,6,'',0,0,'L');
 $pdf->Cell(70,6,'NIP / NPP / NIDK',0,0,'L');
 $pdf->Cell(2,6,':',0,0,'L');
-$pdf->Cell(70,6,'',0,1,'L');
+$pdf->Cell(70,6,$data['nip_penguji2'],0,1,'L');
 
 $pdf->Ln(2);
 $pdf->SetLineWidth(0.2);
@@ -203,20 +218,20 @@ $pdf->Ln(35);
 $pdf->SetFont('Arial','',12);
 $pdf->Cell(10,6,'',0,0,'C');
 $pdf->Cell(8,6,'',0,0,'C',1);
-$pdf->Cell(110,6,'',0,0,'L',1);
+$pdf->Cell(100,6,'',0,0,'L',1);
 $pdf->Cell(40,6,'Pengesahan Penguji II',0,1,'L',1);
 $pdf->Ln(18);
 $pdf->SetFont('Arial','U',12);
 $pdf->Cell(10,6,'',0,0,'C');
 $pdf->Cell(8,6,'',0,0,'C',1);
-$pdf->Cell(110,6,'',0,0,'L',1);
-$pdf->Cell(40,6,'Bambang Agus',0,1,'L',1);
+$pdf->Cell(100,6,'',0,0,'L',1);
+$pdf->Cell(40,6,$data['nama_penguji2'],0,1,'L',1);
 $pdf->SetFont('Arial','',12);
 $pdf->Cell(10,6,'',0,0,'C');
 $pdf->Cell(8,6,'',0,0,'C',1);
-$pdf->Cell(110,6,'',0,0,'L',1);
+$pdf->Cell(100,6,'',0,0,'L',1);
 $pdf->Cell(20,6,'NIP/NPP.',0,0,'L',1);
-$pdf->Cell(50,6,'',0,1,'L',1);
+$pdf->Cell(50,6,$data['nip_penguji2'],0,1,'L',1);
 
 
 $pdf->SetFont('Arial','',11);
@@ -272,5 +287,6 @@ $nomor=0;
 // 	$pdf->Cell(25,4,$data['jeniskelamin'],1,0,'L');
 // 	$pdf->Cell(87,4,$data['alamat'],1,1,'L');
 // }
-$pdf->Output('formpenilaian2.pdf','I');
+$pdf->Output('formpenilaian1.pdf','I');
+}
 ?>			

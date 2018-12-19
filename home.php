@@ -115,12 +115,11 @@
             <div class="icon">
               <i class="ion ion-ios-copy"></i>
             </div>
-            <a href="input_form.php" class="small-box-footer">Klik di sini <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="cek_data_skripsi.php" class="small-box-footer">Klik di sini <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-6 col-xs-6">
-          <!-- small box -->
+       <!--  <div class="col-lg-6 col-xs-6">
           <div class="small-box bg-red">
             <div class="inner">
               <h3>Cetak</h3>
@@ -131,15 +130,14 @@
             </div>
             <a href="input_form.php" class="small-box-footer">Klik di sini <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-        </div>
+        </div> -->
         <!-- ./col -->        
       </div>
 	  <?php
 	  } else if($_SESSION['role'] == 'student'){
 	  ?>
       <div class="row">
-        <div class="col-lg-6 col-xs-6">
-          <!-- small box -->
+<!--         <div class="col-lg-6 col-xs-6">
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3>Upload</h3>
@@ -151,7 +149,19 @@
             <a href="input_form.php" class="small-box-footer">Klik di sini <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <!-- ./col -->
+ -->        <!-- ./col -->
+<!--         <div class="col-lg-6 col-xs-6">
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>Input</h3>
+              <h4>Data Skripsi</h4>
+            </div>
+            <div class="icon">
+              <i class="fa fa-files-o"></i>
+            </div>
+            <a href="input_skripsi_form.php" class="small-box-footer">Klik di sini <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div> -->
         <div class="col-lg-6 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
@@ -162,7 +172,9 @@
             <div class="icon">
               <i class="fa fa-files-o"></i>
             </div>
-            <a href="input_form.php" class="small-box-footer">Klik di sini <i class="fa fa-arrow-circle-right"></i></a>
+            <?php
+            echo "<a href='cetak_form.php?id=".$_SESSION['username']."' class='small-box-footer'>Klik di sini <i class='fa fa-arrow-circle-right'></i></a>";
+            ?>
           </div>
         </div>
         <!-- ./col -->        

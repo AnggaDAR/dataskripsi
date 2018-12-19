@@ -1,10 +1,10 @@
 <?php
 include "connection.php";
 
-$nik = $_POST["nik"];
+$nip = $_POST["nip"];
 $nama = $_POST["nama"];
 
-$query = "INSERT INTO tb_dosen (nik, nama) VALUES ('".$nik."','".$nama."')";
+$query = "INSERT INTO tb_dosen (nik, nama) VALUES ('".$nip."','".$nama."')";
 mysqli_query($conn, $query);
 mysqli_close($conn);
 echo '<script> alert("Data berhasil diinputkan");

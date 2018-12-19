@@ -8,7 +8,7 @@
         </div>
         <div class="pull-left info">
           <p>
-          	<?php echo $_SESSION['username']; ?>
+          	<?php echo $_SESSION['nama']; ?>
           </p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -28,7 +28,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li>
-          <a href="index.php">
+          <a href="home.php">
             <i class="fa fa-home"></i>
             <span>Home</span>
           </a>          
@@ -49,28 +49,30 @@
           </a>          
         </li>
 		<li>
-          <a href="input_form.php">
+          <a href="cek_data_skripsi.php">
             <i class="fa fa-files-o"></i>
             <span>Cek Data Skripsi</span>
           </a>          
         </li>
-        <li>
-          <a href="data_view_simondec.php">
+        <!-- <li>
+          <a href="print_report.php">
             <i class="fa fa-table"></i> 
             <span>Cetak Laporan</span>
           </a>          
-        </li>       
+        </li>  -->      
         <?php
         } else if($_SESSION['role']=="student"){
         ?>
-        <li>
-          <a href="input_form.php">
+        <!-- <li>
+          <a href="input_skripsi_form.php">
             <i class="fa fa-files-o"></i>
-            <span>Upload Data Skripsi</span>
+            <span>Input Data Skripsi</span>
           </a>          
-        </li>
+        </li> -->
         <li>
-          <a href="data_view_simondec.php">
+        <?php
+          echo "<a href='cetak_form.php?id=".$_SESSION['username']."' >";
+        ?>
             <i class="fa fa-table"></i> 
             <span>Cetak Laporan</span>
           </a>          

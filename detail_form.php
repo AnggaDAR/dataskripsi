@@ -59,11 +59,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Edit Data Kependudukan
+        Detail Data Skripsi
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Edit Data Kependudukan</li>
+        <li class="active">Detail Data Skripsi</li>
       </ol>
     </section>
 
@@ -71,107 +71,144 @@
     <section class="content">
 
       <!-- SELECT2 EXAMPLE -->
-      <div class="box box-default">
-        <div class="box-header with-border">
-          <h3 class="box-title">Edit data</h3>
+    <div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title">Detail data skripsi</h3>
 
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+      <div class="box-tools pull-right">
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+      </div>
+    </div>
+    <!-- /.box-header -->
+    <?php 
+      $id = $_GET['id'];
+      $query ="SELECT u.npm, u.nama, u.prodi, u.judul, u.tanggal, u.jam, u.ruang, u.status, d1.nama as nama_ketua, d2.nama as nama_sekretaris, d3.nama as nama_penguji1, d4.nama as nama_penguji2, d5.nama as nama_penguji3, u.status_data 
+      FROM tb_ujian_skripsi as u
+      INNER JOIN tb_dosen as d1 ON d1.nip = u.nip_ketua
+      INNER JOIN tb_dosen as d2 ON d2.nip = u.nip_sekretaris
+      INNER JOIN tb_dosen as d3 ON d3.nip = u.nip_penguji1
+      INNER JOIN tb_dosen as d4 ON d4.nip = u.nip_penguji2
+      INNER JOIN tb_dosen as d5 ON d5.nip = u.nip_penguji3   
+      
+      WHERE npm='".$id."'";
+       //$query ="SELECT u.npm, u.nama, u.prodi, u.judul, u.tanggal, u.jam, u.ruang, u.status, u.status_data, d1.nama as nama_ketua, d2.nama as nama_sekretaris
+       // FROM tb_ujian_skripsi as u
+       // INNER JOIN tb_dosen as d1 ON d1.nip = u.nip_ketua
+       // INNER JOIN tb_dosen as d2 ON d2.nip = u.nip_sekretaris
+       // WHERE npm='".$id."'";
+
+      $result = mysqli_query($conn,$query);
+      $nomor = 1;
+      if (mysqli_num_rows($result) > 0 ) { 
+        while($data = mysqli_fetch_array($result)){
+    ?>
+    <?php echo "<form role='form' method='post' action='validasi_process.php?id=".$id."'' autocomplete='off'>"?>
+    <div class="box-body">
+      <!-- <div class="row"> -->
+      <div class="col-md-12">              
+        <h3 class="box-title">Data Mahasiswa</h3>
+        <div class="col-md-6" >
+          <div class="form-group">
+            <label for="nama">Nama</label>
+            <input type="text" class="form-control" name="nama" value="<?php echo $data['nama'];?>" readonly>
+          </div>
+          <div class="form-group">
+            <label for="npm">NPM</label>
+            <input type="text" class="form-control" name="npm" value="<?php echo $data['npm'];?>" readonly>
           </div>
         </div>
-        <!-- /.box-header -->
-        <?php 
-          $id = $_GET['id'];
-          $query ="SELECT * FROM tb_data_penduduk WHERE nik='".$id."'";
-          $result = mysqli_query($conn,$query);
-          $nomor = 1;
-          if (mysqli_num_rows($result) > 0 ) { 
-            while($data = mysqli_fetch_array($result)){
-        ?>
-              <form role="form" method="post" action="update_process.php?id=<?php echo $id;?>" autocomplete="off">
-              <div class="box-body">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="col-md-6" style="padding-left: 0px">
-                      <div class="form-group">
-                        <label for="nik">NIK</label>
-                        <input type="text" class="form-control" name="nik" value="<?php echo $data['nik'];?>">
-                      </div>
-                      <div class="form-group">
-                        <label for="nama">Nama</label>
-                        <input type="text" class="form-control" name="nama" value="<?php echo $data['nama'];?>">
-                      </div>
-                      <div class="form-group">
-                        <label for="kelamin">Jenis Kelamin</label><br>
-                        <?php
-                          if ($data['jenis_kelamin']=="Laki-Laki") { ?>
-                            <input type="radio" name="kelamin" class="minimal" value="Laki-Laki" checked>Laki-Laki &nbsp
-                            <input type="radio" name="kelamin" class="minimal" value="Perempuan">Perempuan
-                        <?php  
-                          }else{ ?>
-                            <input type="radio" name="kelamin" class="minimal" value="Laki-Laki">Laki-Laki &nbsp
-                            <input type="radio" name="kelamin" class="minimal" value="Perempuan" checked>Perempuan
-                        <?php
-                          } ?>
-                      </div>
-                    </div>
-                    <div class="col-md-6" style="padding-right: 0px">
-                      <div class="form-group" >
-                        <label for="nkk">No. KK</label>
-                        <input type="text" class="form-control" name="nkk" value="<?php echo $data['nkk'];?>">
-                      </div>
-                      <div class="form-group">
-                        <label>Tempat Lahir</label>
-                        <select class="form-control select2" name="tempat_lahir" style="width: 100%;">
-                          <!-- <option selected="selected">Alabama</option> -->
-                          <?php
-                            $query = "SELECT * FROM tb_kota_lahir";
-                            $result = mysqli_query($conn, $query);
-                            while ($row = mysqli_fetch_array($result)) {
-                              if ($row[1]==$data['tempat_lahir']) {
-                                echo "<option selected='selected'>" . $row[1] . "</option>";
-                              }else{
-                                echo "<option>" . $row[1] . "</option>";
-                              }
-                            }
-                          ?>
-                        </select>
-                      </div>
-                      <div class="form-group">
-                        <label>Tanggal Lahir</label>
-                        <div class="input-group date">
-                          <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-                          <input type="text" class="form-control pull-right" id="datepicker" name="tanggal_lahir" value="<?php echo date("d-m-Y", strtotime($data['tanggal_lahir']));?>">
-                        </div>
-                      </div>
-                    </div>                             
-                    <!-- /.form-group -->             
-                    <div class="form-group">
-                      <label>Alamat</label>
-                      <textarea class="form-control" rows="3" name="alamat" ><?php echo $data['alamat'];?></textarea>
-                    </div>
-                    <!-- /.form-group -->
-                  </div>
-                  <!-- /.col -->
-                </div>
-                <!-- /.row -->
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Simpan</button>
-              </div>
-              </form>              
-        <?php 
-            }
-          } else {
-            echo "<h3 class='box-title'>No Result Found</h3>";
-          }
-        ?>
-
+        <div class="col-md-6" >
+          <div class="form-group">
+            <label for="prodi">Program Studi</label>
+            <input type="text" class="form-control" name="prodi" value="<?php echo $data['prodi'];?>" readonly>
+          </div>
+        </div>
       </div>
+      <!-- </div> -->
+      <div class="col-md-12">
+        <h3 class="box-title">Pelaksanaan Ujian Skripsi</h3>
+        <div class="col-md-6" >
+          <div class="form-group">
+            <label for="judul">Judul Skripsi</label>
+            <input type="text" class="form-control" name="judul" value="<?php echo $data['judul'];?>" readonly>
+          </div>
+          <div class="form-group">
+            <label for="tanggal">Tanggal Ujian</label>
+            <input type="text" class="form-control" name="tanggal" value="<?php echo $data['tanggal'];?>" readonly>
+          </div>
+          <div class="form-group">
+            <label for="jam">Jam Ujian</label>
+            <input type="text" class="form-control" name="jam" value="<?php echo $data['jam'];?>" readonly>
+          </div>
+          <div class="form-group">
+            <label for="ruang">Ruang Ujian</label>
+            <input type="text" class="form-control" name="ruang" value="<?php echo $data['ruang'];?>" readonly>
+          </div>
+          <div class="form-group">
+            <label for="status">Status Ujian</label>
+            <input type="text" class="form-control" name="status" value="<?php echo $data['status'];?>" readonly>
+          </div>
+        </div>
+        <div class="col-md-6" >
+          <div class="form-group">
+            <label for="ketua">Ketua Sidang</label>
+            <input type="text" class="form-control" name="ketua" value="<?php echo $data['nama_ketua'];?>" readonly>
+          </div>
+          <div class="form-group">
+            <label for="sekretaris">Sekretaris</label>
+            <input type="text" class="form-control" name="sekretaris" value="<?php echo $data['nama_sekretaris'];?>" readonly>
+          </div>
+          <div class="form-group">
+            <label for="penguji1">Penguji 1</label>
+            <input type="text" class="form-control" name="penguji1" value="<?php echo $data['nama_penguji1'];?>" readonly>
+          </div>
+          <div class="form-group">
+            <label for="penguji2">Penguji 2</label>
+            <input type="text" class="form-control" name="penguji2" value="<?php echo $data['nama_penguji2'];?>" readonly>
+          </div>
+          <div class="form-group">
+            <label for="penguji3">Penguji 3</label>
+            <input type="text" class="form-control" name="penguji3" value="<?php echo $data['nama_penguji3'];?>" readonly>
+          </div>
+        </div>
+      <!-- /.col -->
+      </div>
+      <div class="col-md-12">
+        <h3 class="box-title">Status Data : <?php echo $data['status_data'];?></h3>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <div class="box-footer">
+      <div class="col-md-4" >
+      </div>
+      <div class="col-md-4" >
+      <?php 
+        if ($data['status_data']=="BELUM VALID") {
+      ?>
+        <button type="submit" class="btn btn-block btn-primary">VALIDASI</button>
+      <?php
+        } else if ($data['status_data']=="VALID") {
+      ?>
+        <button type="submit" class="btn btn-block btn-primary" disabled>DATA TELAH DIVALIDASI</button>
+      <?php
+        }
+      ?>
+      </div>
+      <div class="col-md-4" >
+      </div>
+    </div>
+    </form> 
+    <?php 
+        }
+      } else {
+        echo "<h3 class='box-title'>No Result Found</h3>";
+      }
+    ?>
+  
+    </div>
+      <!-- /.box -->      
+
       <!-- /.box -->      
     </section>
     <!-- /.content -->
@@ -203,6 +240,8 @@
 <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!-- bootstrap datepicker -->
 <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- bootstrap datepicker locale indonesian-->
+<script src="bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.id.js"></script>
 <!-- bootstrap color picker -->
 <script src="bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
 <!-- bootstrap time picker -->
@@ -255,7 +294,8 @@
 
     //Date picker
     $('#datepicker').datepicker({
-      format: "dd-mm-yyyy",
+      language: "id",
+      format: "DD, dd MM yyyy",
       autoclose: true
     })
 
@@ -282,6 +322,8 @@
 
     //Timepicker
     $('.timepicker').timepicker({
+      showMeridian: false,
+      minuteStep: 1,
       showInputs: false
     })
   })
