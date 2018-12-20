@@ -3,7 +3,7 @@
   // include "login.php";
   session_start();
   if($_SESSION['status'] !="login"){
-    header("location:login.php");
+    header("location:index.php");
   }
   include "connection.php";
 ?>

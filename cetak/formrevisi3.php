@@ -2,7 +2,7 @@
 // include'../koneksi.php';
 session_start();
 if($_SESSION['status'] !="login"){
-header("location:login.php");
+header("location:index.php");
 }
 include "../connection.php";
 include'../fpdf181/fpdf.php';
@@ -141,6 +141,6 @@ $nomor=0;
 // 	$pdf->Cell(25,4,$data['jeniskelamin'],1,0,'L');
 // 	$pdf->Cell(87,4,$data['alamat'],1,1,'L');
 // }
-$pdf->Output('formrevisi1.pdf','I');
+$pdf->Output('formrevisi3.pdf','I');
 }
 ?>			

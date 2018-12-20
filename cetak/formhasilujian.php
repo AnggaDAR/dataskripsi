@@ -2,7 +2,7 @@
 // include'../koneksi.php';
 session_start();
 if($_SESSION['status'] !="login"){
-header("location:login.php");
+header("location:index.php");
 }
 include "../connection.php";
 include'../fpdf181/fpdf.php';

@@ -3,7 +3,7 @@
   // include "login.php";
   session_start();
   if($_SESSION['status'] !="login"){
-	  header("location:login.php");
+	  header("location:index.php");
   }
 ?>
 <html>
@@ -150,7 +150,7 @@
           </div>
         </div>
  -->        <!-- ./col -->
-<!--         <div class="col-lg-6 col-xs-6">
+        <div class="col-lg-6 col-xs-6">
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3>Input</h3>
@@ -161,7 +161,7 @@
             </div>
             <a href="input_skripsi_form.php" class="small-box-footer">Klik di sini <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-        </div> -->
+        </div>
         <div class="col-lg-6 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
