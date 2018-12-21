@@ -54,12 +54,12 @@
             <span>Cek Data Skripsi</span>
           </a>          
         </li>
-        <!-- <li>
-          <a href="print_report.php">
+        <li>
+          <a href="tambah_mhs_form.php">
             <i class="fa fa-table"></i> 
-            <span>Cetak Laporan</span>
+            <span>Tambah User Mahasiswa</span>
           </a>          
-        </li>  -->      
+        </li>       
         <?php
         } else if($_SESSION['role']=="student"){
         ?>
@@ -67,6 +67,12 @@
           <a href="input_skripsi_form.php">
             <i class="fa fa-files-o"></i>
             <span>Input Data Skripsi</span>
+          </a>          
+        </li>
+        <li>
+          <a href="upload_berkas_form.php">
+            <i class="fa fa-files-o"></i>
+            <span>Upload Berkas Skripsi</span>
           </a>          
         </li>
         <li>

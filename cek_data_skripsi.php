@@ -77,6 +77,7 @@
                   <th>Prodi</th>
                   <th>Judul Skripsi</th>
                   <th>Status Data</th>
+                  <th>Status Berkas</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -96,8 +97,17 @@
                     echo "<td style='color:green'><b>" . $row[13] . "</b></td>";
                   } else {
                     echo "<td style='color:red'><b>" . $row[13] . "</b></td>";
+                  }   
+                  if ($row[14]=="VALID") {
+                    echo "<td style='color:green'><b>" . $row[14] . "</b></td>";
+                  } else {
+                    echo "<td style='color:red'><b>" . $row[14] . "</b></td>";
                   }                  
-                  echo "<td><a href='detail_form.php?id=".$row[0]."' class='btn btn-group btn-info'><i class='fa fa-edit'></i> Detail </a><a href='cetak_form.php?id=".$row[0]."' class='btn btn-group btn-success'><i class='fa fa-print'></i> Cetak PDF </a></td>";
+                  echo "<td>
+                    <a href='detail_form.php?id=".$row[0]."' class='btn btn-block btn-info'><i class='fa fa-edit'></i> Validasi Data </a>
+                    <a href='verifikasi_form.php?id=".$row[0]."' class='btn btn-block btn-warning'><i class='fa fa-edit'></i> Verifikasi Berkas </a>
+                    <a href='cetak_form.php?id=".$row[0]."' class='btn btn-block btn-success'><i class='fa fa-print'></i> Cetak PDF </a>
+                  </td>";
                   echo "</tr>";
                   $i++;   
                 }
@@ -112,6 +122,7 @@
                   <th>Prodi</th>
                   <th>Judul Skripsi</th>
                   <th>Status Data</th>
+                  <th>Status Berkas</th>
                   <th>Aksi</th>
                 </tr>
                 </tfoot>

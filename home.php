@@ -119,37 +119,25 @@
           </div>
         </div>
         <!-- ./col -->
-       <!--  <div class="col-lg-6 col-xs-6">
+        <div class="col-lg-6 col-xs-6">
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>Cetak</h3>
-              <h4>Laporan</h4>
+              <h3>Tambah</h3>
+              <h4>User Mahasiswa</h4>
             </div>
             <div class="icon">
               <i class="fa fa-files-o"></i>
             </div>
-            <a href="input_form.php" class="small-box-footer">Klik di sini <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="tambah_mhs_form.php" class="small-box-footer">Klik di sini <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-        </div> -->
+        </div>
         <!-- ./col -->        
       </div>
 	  <?php
 	  } else if($_SESSION['role'] == 'student'){
 	  ?>
       <div class="row">
-<!--         <div class="col-lg-6 col-xs-6">
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>Upload</h3>
-              <h4>Data Skripsi</h4>
-            </div>
-            <div class="icon">
-              <i class="ion ion-ios-copy"></i>
-            </div>
-            <a href="input_form.php" class="small-box-footer">Klik di sini <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
- -->        <!-- ./col -->
+        
         <div class="col-lg-6 col-xs-6">
           <div class="small-box bg-aqua">
             <div class="inner">
@@ -162,6 +150,21 @@
             <a href="input_skripsi_form.php" class="small-box-footer">Klik di sini <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
+        <div class="col-lg-6 col-xs-6">
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>Upload</h3>
+              <h4>Berkas Skripsi</h4>
+            </div>
+            <div class="icon">
+              <i class="ion ion-ios-copy"></i>
+            </div>
+            <a href="upload_berkas_form.php" class="small-box-footer">Klik di sini <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </div>
+        <!-- ./col -->
+      <div class="row"> 
         <div class="col-lg-6 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">

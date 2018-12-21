@@ -69,18 +69,25 @@
             <!-- /.box-header -->
             <?php 
               $id = $_GET['id'];
-              $query = "SELECT * FROM tb_ujian_skripsi";
+              $query = "SELECT * FROM tb_ujian_skripsi WHERE npm='".$id."'";
               $result = mysqli_query($conn, $query);
               $i = 1;
               while ($data = mysqli_fetch_array($result)) {
                 $status_data=$data['status_data'];
+                $status_berkas=$data['status_berkas'];
               }
               
             ?>
             <div class="box-body">
             <?php
-              if ($status_data!='VALID') {
-                echo "<h3 class='box-title' style='color:red'>Data Belum Divalidasi, Tidak Dapat Dicetak!</h3>";
+              if ($status_data!='VALID' && $status_berkas!='VALID') {
+                echo "<h3 class='box-title' style='color:red'>Data Dan Berkas Belum Divalidasi, Form Tidak Dapat Dicetak!</h3>";
+              }else if ($status_data!='VALID' && $status_berkas=='VALID') {
+                echo "<h3 class='box-title' style='color:red'>Berkas Telah Divalidasi Tetapi Data Belum Divalidasi, Form Tidak Dapat Dicetak!</h3>";
+              }elseif ($status_data=='VALID' && $status_berkas!='VALID') {
+                echo "<h3 class='box-title' style='color:red'>Data Telah Divalidasi Tetapi Berkas Belum Divalidasi, Form Tidak Dapat Dicetak!</h3>";
+              }else{
+                echo "<h3 class='box-title' style='color:green'>Data Dan Berkas Telah Divalidasi, Form Dapat Dicetak!</h3>";            
               }
             ?>
               <table id="example1" class="table table-bordered table-striped">
@@ -93,7 +100,7 @@
                 </thead>
                 <tbody>
                   <?php
-                    if ($status_data=='VALID') {
+                    if ($status_data=='VALID' && $status_berkas=='VALID') {
                   ?>
                   <tr>
                     <td>1</td>
