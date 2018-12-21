@@ -44,7 +44,7 @@ if (empty($_POST["npm"]) || empty($_POST["nama"]) || empty($_POST["prodi"]) || e
 		$file_ext=strtolower(end($filename_parts));
 		$target_file = $target_dir."foto_usulan_".$npm.".".$file_ext;
 
-		$extensions= array("png","jpg");
+		$extensions= array("png","jpg","jpeg");
 
 		if (empty($file_name)) {
 			echo '<script> alert("Gambar belum diupload");
@@ -52,7 +52,7 @@ if (empty($_POST["npm"]) || empty($_POST["nama"]) || empty($_POST["prodi"]) || e
 			</script>';
 		} else {
 			if(in_array($file_ext,$extensions) == false){
-				$errors[]="Tidak dapat upload gambar berekstensi selain .png/.jpg!";
+				$errors[]="Tidak dapat upload gambar berekstensi selain png/jpg/jpeg !";
 			}			
 			if(empty($errors)){
 				if(!is_dir($target_dir)) {

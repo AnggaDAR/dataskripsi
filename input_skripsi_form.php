@@ -195,7 +195,7 @@
           <div class="form-group">
             <label for="fileUpload">Upload Foto Usulan Judul & Pembimbing</label>
             <input type="file" id="fileUpload" name="fileUpload">
-            <p class="help-block">*Gambar harus berekstensi .png/.jpg</p>
+            <p class="help-block">*Gambar harus berekstensi png/jpg/jpeg</p>
           </div>
 
         </div>
