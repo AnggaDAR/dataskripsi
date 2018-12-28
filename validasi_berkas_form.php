@@ -59,11 +59,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Detail Data Skripsi
+        Validasi Berkas Skripsi
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Detail Data Skripsi</li>
+        <li class="active">Validasi Berkas Skripsi</li>
       </ol>
     </section>
 
@@ -73,7 +73,7 @@
       <!-- SELECT2 EXAMPLE -->
     <div class="box box-default">
     <div class="box-header with-border">
-      <h3 class="box-title">Detail data skripsi</h3>
+      <h3 class="box-title">Validasi berkas skripsi</h3>
 
       <div class="box-tools pull-right">
       <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -83,13 +83,8 @@
     <!-- /.box-header -->
     <?php 
       $id = $_GET['id'];
-      $query ="SELECT u.npm, u.nama, u.prodi, u.judul, u.tanggal, u.jam, u.ruang, u.status, d1.nama as nama_ketua, d2.nama as nama_sekretaris, d3.nama as nama_penguji1, d4.nama as nama_penguji2, d5.nama as nama_penguji3, u.status_data, u.foto_usulan 
+      $query ="SELECT u.npm, u.status_berkas, u.berkas_skripsi
       FROM tb_ujian_skripsi as u
-      INNER JOIN tb_dosen as d1 ON d1.nip = u.nip_ketua
-      INNER JOIN tb_dosen as d2 ON d2.nip = u.nip_sekretaris
-      INNER JOIN tb_dosen as d3 ON d3.nip = u.nip_penguji1
-      INNER JOIN tb_dosen as d4 ON d4.nip = u.nip_penguji2
-      INNER JOIN tb_dosen as d5 ON d5.nip = u.nip_penguji3   
       
       WHERE npm='".$id."'";
        //$query ="SELECT u.npm, u.nama, u.prodi, u.judul, u.tanggal, u.jam, u.ruang, u.status, u.status_data, d1.nama as nama_ketua, d2.nama as nama_sekretaris
@@ -102,109 +97,146 @@
       $nomor = 1;
       if (mysqli_num_rows($result) > 0 ) { 
         while($data = mysqli_fetch_array($result)){
+          $berkas=str_replace("upload/".$id."/", "", $data['berkas_skripsi']);
+          $status_berkas=$data['status_berkas'];
+        }
     ?>
-    <?php echo "<form role='form' method='post' action='validasi_process.php?id=".$id."'' autocomplete='off'>"?>
+    <form role="form" method="post" action="validasi_berkas_process.php?id=<?php echo $id;?>" autocomplete="off">
     <div class="box-body">
       <!-- <div class="row"> -->
       <div class="col-md-12">              
-        <h3 class="box-title">Data Mahasiswa</h3>
-        <div class="col-md-6" >
-          <div class="form-group">
-            <label for="nama">Nama</label>
-            <input type="text" class="form-control" name="nama" value="<?php echo $data['nama'];?>" readonly>
-          </div>
-          <div class="form-group">
-            <label for="npm">NPM</label>
-            <input type="text" class="form-control" name="npm" value="<?php echo $data['npm'];?>" readonly>
-          </div>
+        <h3 class="box-title">Berkas Yang Diupload</h3>
+        <div class="col-md-4" >
+          <input type="text" class="form-control" name="nama" value="<?php echo $berkas;?>" readonly>
         </div>
-        <div class="col-md-6" >
-          <div class="form-group">
-            <label for="prodi">Program Studi</label>
-            <input type="text" class="form-control" name="prodi" value="<?php echo $data['prodi'];?>" readonly>
-          </div>
+        <div class="col-md-3" >
+          <a href="<?php echo $data['berkas_skripsi'];?>" class="btn btn-block btn-success"><i class="fa fa-download"></i> Download Berkas </a>
         </div>
       </div>
       <!-- </div> -->
       <div class="col-md-12">
-        <h3 class="box-title">Pelaksanaan Ujian Skripsi</h3>
-        <div class="col-md-6" >
-          <div class="form-group">
-            <label for="judul">Judul Skripsi</label>
-            <input type="text" class="form-control" name="judul" value="<?php echo $data['judul'];?>" readonly>
-          </div>
-          <div class="form-group">
-            <label for="tanggal">Tanggal Ujian</label>
-            <input type="text" class="form-control" name="tanggal" value="<?php echo $data['tanggal'];?>" readonly>
-          </div>
-          <div class="form-group">
-            <label for="jam">Jam Ujian</label>
-            <input type="text" class="form-control" name="jam" value="<?php echo $data['jam'];?>" readonly>
-          </div>
-          <div class="form-group">
-            <label for="ruang">Ruang Ujian</label>
-            <input type="text" class="form-control" name="ruang" value="<?php echo $data['ruang'];?>" readonly>
-          </div>
-          <div class="form-group">
-            <label for="status">Status Ujian</label>
-            <input type="text" class="form-control" name="status" value="<?php echo $data['status'];?>" readonly>
-          </div>
-          <div class="form-group">
-            <label for="image">Foto Usulan</label><br>
-            <img src="<?php echo $data['foto_usulan'];?>" name="image" alt="<?php echo str_replace('upload/'.$id.'/', '', $data['foto_usulan'])?>" height="500px" align="middle">
-          </div>
-        </div>
-        <div class="col-md-6" >
-          <div class="form-group">
-            <label for="ketua">Ketua Sidang</label>
-            <input type="text" class="form-control" name="ketua" value="<?php echo $data['nama_ketua'];?>" readonly>
-          </div>
-          <div class="form-group">
-            <label for="sekretaris">Sekretaris</label>
-            <input type="text" class="form-control" name="sekretaris" value="<?php echo $data['nama_sekretaris'];?>" readonly>
-          </div>
-          <div class="form-group">
-            <label for="penguji1">Penguji 1</label>
-            <input type="text" class="form-control" name="penguji1" value="<?php echo $data['nama_penguji1'];?>" readonly>
-          </div>
-          <div class="form-group">
-            <label for="penguji2">Penguji 2</label>
-            <input type="text" class="form-control" name="penguji2" value="<?php echo $data['nama_penguji2'];?>" readonly>
-          </div>
-          <div class="form-group">
-            <label for="penguji3">Penguji 3</label>
-            <input type="text" class="form-control" name="penguji3" value="<?php echo $data['nama_penguji3'];?>" readonly>
-          </div>
-        </div>
-      <!-- /.col -->
-      </div>
+        <h3 class="box-title">Kelengkapan</h3>          
       <div class="col-md-12">
-        <h3 class="box-title">Status Data : <?php echo $data['status_data'];?></h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Kelengkapan</th>
+              <th>Checklist</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Poster Cetak & Frame (Tanpa Kaca) ukuran A3</td>
+              <td>
+                <input type="hidden" name="hardcopy_poster" value="0">
+                <input type="checkbox" name="hardcopy_poster" value="1" class="minimal">
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Manual Book Produk/Software (Jika Skripsi Menghasilkan Produk/Software)</td>
+              <td>
+                <input type="hidden" name="manual_book" value="0">
+                <input type="checkbox" name="manual_book" value="1" class="minimal">
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Upload Soft Copy Skripsi</td>
+              <td>
+                <input type="hidden" name="softcopy_skripsi" value="0">
+                <input type="checkbox" name="softcopy_skripsi" value="1" class="minimal">
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Upload Soft Copy Artikel</td>
+              <td>
+                <input type="hidden" name="softcopy_artikel" value="0">
+                <input type="checkbox" name="softcopy_artikel" value="1" class="minimal">
+              </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Upload Soft Copy Poster</td>
+              <td>
+                <input type="hidden" name="softcopy_poster" value="0">
+                <input type="checkbox" name="softcopy_poster" value="1" class="minimal">
+              </td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Sumbangan Buku IT 2 Judul (Terbitan 2012 ke atas dan Minimal 250 Halaman)</td>
+              <td>
+                <input type="hidden" name="sumbangan_buku" value="0">
+                <input type="checkbox" name="sumbangan_buku" value="1" class="minimal">
+              </td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Sertifikat Test TOEFL</td>
+              <td>
+                <input type="hidden" name="sertifikat_toefl" value="0"">
+                <input type="checkbox" name="sertifikat_toefl" value="1" class="minimal">
+              </td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>CD Dengan Isi Skripsi(.pdf), Artikel(.pdf), Poster(.jpg) dan File Produk/ Software Aplikasi</td>
+              <td>
+                <input type="hidden" name="cd_skripsi" value="0">
+                <input type="checkbox" name="cd_skripsi" value="1" class="minimal">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+      <div class="col-md-12">
+        <h3 class="box-title">Status Berkas : <?php echo $status_berkas;?></h3>
       </div>
       <!-- /.box-body -->
     </div>
     <div class="box-footer">
-      <div class="col-md-4" >
+      <div class="col-md-3" >
       </div>
-      <div class="col-md-4" >
       <?php 
-        if ($data['status_data']=="BELUM VALID") {
+        if ($status_berkas=="BELUM VALID") {
       ?>
-        <button type="submit" class="btn btn-block btn-primary">VALIDASI</button>
+      <div class="col-md-3" >
+        <button type="submit" name="submit" class="btn btn-block btn-primary" value="valid">VALIDASI</button>
+      </div>
+      <div class="col-md-3" >
+        <button type="submit" name="submit" class="btn btn-block btn-danger" value="cancel" disabled>BATALKAN VALIDASI</button>
+      </div>
       <?php
-        } else if ($data['status_data']=="VALID") {
+        } else if ($status_berkas=="VALID") {
       ?>
-        <button type="submit" class="btn btn-block btn-primary" disabled>DATA TELAH DIVALIDASI</button>
+      <div class="col-md-3" >
+        <button type="submit" name="submit" class="btn btn-block btn-primary" value="valid" disabled>VALIDASI</button>
+      </div>
+      <div class="col-md-3" >
+        <button type="submit" name="submit" class="btn btn-block btn-danger" value="cancel">BATALKAN VALIDASI</button>
+      </div>
+      <?php
+        } else {
+      ?>
+      <div class="col-md-3" >
+        <button type="submit" name="submit" class="btn btn-block btn-primary" value="valid">VALIDASI</button>
+      </div>
+      <div class="col-md-3" >
+        <button type="submit" name="submit" class="btn btn-block btn-danger" value="cancel">BATALKAN VALIDASI</button>
+      </div>
       <?php
         }
       ?>
-      </div>
-      <div class="col-md-4" >
+      <div class="col-md-3" >
       </div>
     </div>
     </form> 
     <?php 
-        }
       } else {
         echo "<h3 class='box-title'>No Result Found</h3>";
       }

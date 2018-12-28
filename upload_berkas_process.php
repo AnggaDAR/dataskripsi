@@ -38,7 +38,7 @@
 				}
 				move_uploaded_file($file_tmp,$target_file);
 
-				$query = "UPDATE tb_ujian_skripsi SET berkas_skripsi='".$target_file."' where npm='".$npm."'";
+				$query = "UPDATE tb_ujian_skripsi SET status_berkas='DALAM PEMERIKSAAN', berkas_skripsi='".$target_file."' where npm='".$npm."'";
 				mysqli_query($conn, $query);
 				mysqli_close($conn);
 

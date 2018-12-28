@@ -81,9 +81,35 @@
 		  </div>
 		</div>
 		<!-- /.box-header -->
+    <?php
+      $id = $_SESSION['username'];
+      $query = "SELECT status_berkas FROM tb_ujian_skripsi WHERE npm='".$id."'";
+
+      $result = mysqli_query($conn, $query);
+      while ($row = mysqli_fetch_array($result)) {
+        $status_berkas = $row["status_berkas"];
+      }
+    ?>
 		<form role="form" name="form_berkas" method="post" action="upload_berkas_process.php" enctype="multipart/form-data" autocomplete="off">
 		<div class="box-body">
 		  <div class="row">
+        <div class="col-md-12">
+          <?php
+          if ($status_berkas=="VALID" || $status_berkas=="DALAM PEMERIKSAAN") {
+          ?>
+          <h3 class="box-title">Status Berkas <?php echo $status_berkas;?>, Tidak Dapat Diedit</h3>
+          <?php
+          } else if ($status_berkas=="BELUM VALID"){
+          ?>
+          <h3 class="box-title">Status Berkas <?php echo $status_berkas;?>, Silahkan Upload Lagi</h3>
+          <?php
+          } else if ($status_berkas=="BARU"){
+          ?>
+          <h3 class="box-title">Status Berkas <?php echo $status_berkas;?>, Silahkan Upload Berkas</h3>
+          <?php
+          }
+          ?>
+        </div>
         <div class="col-md-12">
           <div class="col-md-6" >
             <div class="form-group">
@@ -98,7 +124,17 @@
 		<div class="box-footer">
       
       <div class="col-md-4" >
-  		  <button type="submit" class="btn btn-block btn-primary">Upload</button>
+        <?php
+        if ($status_berkas=="VALID" || $status_berkas=="DALAM PEMERIKSAAN") {
+        ?>
+        <button type="submit" class="btn btn-block btn-primary" disabled>Upload</button>
+        <?php
+        } else {
+        ?>
+        <button type="submit" class="btn btn-block btn-primary">Upload</button>
+        <?php
+        }
+        ?>
       </div>
 		</div>
 		</form>   

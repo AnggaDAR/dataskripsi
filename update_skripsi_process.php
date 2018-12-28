@@ -1,9 +1,6 @@
 <?php
-session_start();
-if($_SESSION['status'] !="login"){
-	header("location:index.php");
-}
 include "connection.php";
+$id = $_GET["id"];
 
 if (empty($_POST["npm"]) || empty($_POST["nama"]) || empty($_POST["prodi"]) || empty($_POST["judul"]) || empty($_POST["tanggal"]) || empty($_POST["jam"]) || empty($_POST["ruang"]) || empty($_POST["status"]) ||empty($_POST["ketua"]) ||empty($_POST["sekretaris"]) ||empty($_POST["penguji1"]) ||empty($_POST["penguji2"]) ||empty($_POST["penguji3"])) {
 	echo '<script> alert("Data Harus Lengkap!");
@@ -31,11 +28,21 @@ if (empty($_POST["npm"]) || empty($_POST["nama"]) || empty($_POST["prodi"]) || e
 	$nip_penguji1 = $penguji1[0];
 	$nip_penguji2 = $penguji2[0];
 	$nip_penguji3 = $penguji3[0];
-	
+
+	$status_data = "DALAM PEMERIKSAAN";
+
+	$query1 = "UPDATE tb_ujian_skripsi SET npm='".$npm."', nama='".$nama."', prodi='".$prodi."', judul='".$judul."', tanggal='".$tanggal."', jam='".$jam."', ruang='".$ruang."', status='".$status."', nip_ketua='".$nip_ketua."', nip_sekretaris='".$nip_sekretaris."', nip_penguji1='".$nip_penguji1."', nip_penguji2='".$nip_penguji2."', nip_penguji3='".$nip_penguji3."', status_data='".$status_data."' WHERE npm='".$id."'";
+	$query2 = "UPDATE tb_user SET username='".$npm."', nama='".$nama."', prodi='".$prodi."' WHERE username='".$id."'";
+	mysqli_query($conn, $query1);
+	mysqli_query($conn, $query2);
+
+	echo '<script> alert("Data berhasil diupdate");
+			window.location = "input_skripsi_form.php";
+			</script>';
 	if($_FILES['fileUpload']['error']==4){
-		echo '<script> alert("Gambar belum diupload");
-		window.location = "input_skripsi_form.php";
-		</script>';
+		// echo '<script> alert("Gambar belum diupload");
+		// window.location = "input_skripsi_form.php";
+		// </script>';
 	} else {
 		$target_dir = "upload/".$npm."/";
 		$errors= array();
@@ -63,10 +70,10 @@ if (empty($_POST["npm"]) || empty($_POST["nama"]) || empty($_POST["prodi"]) || e
 				    mkdir($target_dir);
 				}
 				move_uploaded_file($file_tmp,$target_file);
-				$query = "INSERT INTO tb_ujian_skripsi (npm, nama, prodi, judul, tanggal, jam, ruang, status, nip_ketua, nip_sekretaris, nip_penguji1, nip_penguji2, nip_penguji3, foto_usulan) VALUES ('".$npm."','".$nama."','".$prodi."','".$judul."','".$tanggal."','".$jam."','".$ruang."','".$status."','".$nip_ketua."','".$nip_sekretaris."','".$nip_penguji1."','".$nip_penguji2."','".$nip_penguji3."','".$target_file."')";
+				$query = "UPDATE tb_ujian_skripsi SET foto_usulan='".$target_file."' WHERE npm='".$id."'";
 				mysqli_query($conn, $query);
-				mysqli_close($conn);
-				echo '<script> alert("Data berhasil diinputkan");
+
+				echo '<script> alert("File berhasil diupdate");
 				window.location = "input_skripsi_form.php";
 				</script>';
 			}else{
@@ -78,6 +85,7 @@ if (empty($_POST["npm"]) || empty($_POST["nama"]) || empty($_POST["prodi"]) || e
 		}		
 		
 	}
+	
 	
 }
 

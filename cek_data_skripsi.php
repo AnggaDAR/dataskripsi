@@ -95,17 +95,21 @@
                   echo "<td>" . $row[3] . "</td>";
                   if ($row[13]=="VALID") {
                     echo "<td style='color:green'><b>" . $row[13] . "</b></td>";
-                  } else {
+                  } else if ($row[13]=="BELUM VALID"){
                     echo "<td style='color:red'><b>" . $row[13] . "</b></td>";
-                  }   
+                  } else{
+                    echo "<td style='color:orange'><b>" . $row[13] . "</b></td>";
+                  } 
                   if ($row[14]=="VALID") {
                     echo "<td style='color:green'><b>" . $row[14] . "</b></td>";
-                  } else {
+                  } else if ($row[14]=="BELUM VALID"){
                     echo "<td style='color:red'><b>" . $row[14] . "</b></td>";
-                  }                  
+                  } else{
+                    echo "<td style='color:orange'><b>" . $row[14] . "</b></td>";
+                  }                 
                   echo "<td>
-                    <a href='detail_form.php?id=".$row[0]."' class='btn btn-block btn-info'><i class='fa fa-edit'></i> Validasi Data </a>
-                    <a href='verifikasi_form.php?id=".$row[0]."' class='btn btn-block btn-warning'><i class='fa fa-edit'></i> Verifikasi Berkas </a>
+                    <a href='validasi_data_form.php?id=".$row[0]."' class='btn btn-block btn-info'><i class='fa fa-edit'></i> Validasi Data </a>
+                    <a href='validasi_berkas_form.php?id=".$row[0]."' class='btn btn-block btn-warning'><i class='fa fa-edit'></i> Validasi Berkas </a>
                     <a href='cetak_form.php?id=".$row[0]."' class='btn btn-block btn-success'><i class='fa fa-print'></i> Cetak PDF </a>
                   </td>";
                   echo "</tr>";

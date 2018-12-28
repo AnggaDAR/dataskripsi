@@ -8,15 +8,31 @@ include "../connection.php";
 include'../fpdf181/fpdf.php';
 
 $id = $_GET['id'];
-$query ="SELECT u.npm, u.nama, u.judul, u.nip_penguji1, u.tanggal, d1.nama as nama_penguji1, u.status_data 
+$query ="SELECT u.npm, u.nama, u.judul, u.tanggal,
+	k.hardcopy_poster as berkas1, 
+	k.manual_book as berkas2, 
+	k.softcopy_skripsi as berkas3, 
+	k.softcopy_artikel as berkas4, 
+	k.softcopy_poster as berkas5, 
+	k.sumbangan_buku as berkas6, 
+	k.sertifikat_toefl as berkas7, 
+	k.cd_skripsi as berkas8 
     FROM tb_ujian_skripsi as u
-    INNER JOIN tb_dosen as d1 ON d1.nip = u.nip_penguji1
-      
-    WHERE npm='".$id."'";
+    INNER JOIN tb_kelengkapan as k ON k.npm = u.npm      
+    WHERE u.npm='".$id."'";
 
 $result = mysqli_query($conn,$query);
 
 while($data = mysqli_fetch_array($result)){
+$data['berkas1'] = ($data['berkas1']==1) ? chr(52) : chr(32) ;
+$data['berkas2'] = ($data['berkas2']==1) ? chr(52) : chr(32) ;
+$data['berkas3'] = ($data['berkas3']==1) ? chr(52) : chr(32) ;
+$data['berkas4'] = ($data['berkas4']==1) ? chr(52) : chr(32) ;
+$data['berkas5'] = ($data['berkas5']==1) ? chr(52) : chr(32) ;
+$data['berkas6'] = ($data['berkas6']==1) ? chr(52) : chr(32) ;
+$data['berkas7'] = ($data['berkas7']==1) ? chr(52) : chr(32) ;
+$data['berkas8'] = ($data['berkas8']==1) ? chr(52) : chr(32) ;
+
 $tgl = explode(", ", $data['tanggal']);
 $pdf = new FPDF();
 $pdf->AddPage('P',array(210,330));
@@ -96,60 +112,80 @@ $pdf->Cell(16,7,'',0,0,'L');
 $pdf->SetFont('ZapfDingbats','',12);
 $pdf->Cell(7,7,chr(226),0,0,'L');
 $pdf->SetFont('arial','',12);
-$pdf->Cell(150,7,'Poster Cetak + Frame (Tanpa Kaca) ukuran A3',0,1,'L');
+$pdf->Cell(153,7,'Poster Cetak + Frame (Tanpa Kaca) ukuran A3',0,0,'L');
+$pdf->SetFont('ZapfDingbats','',13);
+$pdf->Cell(2,7,$data['berkas1'],0,1,'L');
 $pdf->RoundedRect(185, 98, 7, 6,  2, 'D');
 
 $pdf->Cell(16,7,'',0,0,'L');
 $pdf->SetFont('ZapfDingbats','',12);
 $pdf->Cell(7,7,chr(226),0,0,'L');
 $pdf->SetFont('arial','',12);
-$pdf->Cell(150,7,'Manual Book Produk/Software (Jika Skripsi Menghasilkan Produk/Software)',0,1,'L');
+$pdf->Cell(153,7,'Manual Book Produk/Software (Jika Skripsi Menghasilkan Produk/Software)',0,0,'L');
+$pdf->SetFont('ZapfDingbats','',12);
+$pdf->Cell(2,7,$data['berkas2'],0,1,'L');
 $pdf->RoundedRect(185, 105, 7, 6,  2, 'D');
 
 $pdf->Cell(16,7,'',0,0,'L');
 $pdf->SetFont('ZapfDingbats','',12);
 $pdf->Cell(7,7,chr(226),0,0,'L');
 $pdf->SetFont('arial','',12);
-$pdf->Cell(150,7,'Upload Soft Copy Skripsi',0,1,'L');
+$pdf->Cell(153,7,'Upload Soft Copy Skripsi',0,0,'L');
+$pdf->SetFont('ZapfDingbats','',12);
+$pdf->Cell(2,7,$data['berkas3'],0,1,'L');
 $pdf->RoundedRect(185, 112, 7, 6,  2, 'D');
 
 $pdf->Cell(16,7,'',0,0,'L');
 $pdf->SetFont('ZapfDingbats','',12);
 $pdf->Cell(7,7,chr(226),0,0,'L');
 $pdf->SetFont('arial','',12);
-$pdf->Cell(150,7,'Upload Soft Copy Artikel',0,1,'L');
+$pdf->Cell(153,7,'Upload Soft Copy Artikel',0,0,'L');
+$pdf->SetFont('ZapfDingbats','',12);
+$pdf->Cell(2,7,$data['berkas4'],0,1,'L');
 $pdf->RoundedRect(185, 119, 7, 6,  2, 'D');
 
 $pdf->Cell(16,7,'',0,0,'L');
 $pdf->SetFont('ZapfDingbats','',12);
 $pdf->Cell(7,7,chr(226),0,0,'L');
 $pdf->SetFont('arial','',12);
-$pdf->Cell(150,7,'Upload Soft Copy Poster',0,1,'L');
+$pdf->Cell(153,7,'Upload Soft Copy Poster',0,0,'L');
+$pdf->SetFont('ZapfDingbats','',12);
+$pdf->Cell(2,7,$data['berkas5'],0,1,'L');
 $pdf->RoundedRect(185, 126, 7, 6,  2, 'D');
 
 $pdf->Cell(16,7,'',0,0,'L');
 $pdf->SetFont('ZapfDingbats','',12);
 $pdf->Cell(7,7,chr(226),0,0,'L');
 $pdf->SetFont('arial','',12);
-$pdf->Cell(150,7,'Sumbangan Buku IT 2 Judul (Terbitan 2012 ke atas dan Minimal 250 Halaman)',0,1,'L');
+$pdf->Cell(153,7,'Sumbangan Buku IT 2 Judul (Terbitan 2012 ke atas dan Minimal 250 Halaman)',0,0,'L');
+$pdf->SetFont('ZapfDingbats','',12);
+$pdf->Cell(2,7,$data['berkas6'],0,1,'L');
 $pdf->RoundedRect(185, 133, 7, 6,  2, 'D');
 
 $pdf->Cell(16,7,'',0,0,'L');
 $pdf->SetFont('ZapfDingbats','',12);
 $pdf->Cell(7,7,chr(226),0,0,'L');
 $pdf->SetFont('arial','',12);
-$pdf->Cell(150,7,'Sertifikat Test TOEFL',0,1,'L');
+$pdf->Cell(153,7,'Sertifikat Test TOEFL',0,0,'L');
+$pdf->SetFont('ZapfDingbats','',12);
+$pdf->Cell(2,7,$data['berkas7'],0,1,'L');
 $pdf->RoundedRect(185, 140, 7, 6,  2, 'D');
 
 $pdf->Cell(16,7,'',0,0,'L');
 $pdf->SetFont('ZapfDingbats','',12);
 $pdf->Cell(7,7,chr(226),0,0,'L');
 $pdf->SetFont('arial','',12);
-$pdf->MultiCell(150,7,'CD Dengan Isi Skripsi(.pdf), Artikel(.pdf), Poster(.jpg) dan File Produk/ Software Aplikasi',0,'L',false);
+$y = $pdf->GetY();
+$x = $pdf->GetX();
+$pdf->MultiCell(153,7,'CD Dengan Isi Skripsi(.pdf), Artikel(.pdf), Poster(.jpg) dan File Produk/ Software Aplikasi',0,'L',false);
+$pdf->SetFont('ZapfDingbats','',12);
+$pdf->SetXY($x + 153, $y);
+$pdf->Cell(2,7,$data['berkas8'],0,1,'L');
 $pdf->RoundedRect(185, 147, 7, 6,  2, 'D');
 $pdf->Ln(10);
 
  $pdf->Cell(11,6,'',0,0,'L');
+$pdf->SetFont('arial','',12);
 $pdf->Cell(66,6,'Alamat Email Pengiriman/ Upload: ',0,0,'L');
 $pdf->SetTextColor(0,0,192);
 $pdf->SetFont('Arial','U',12);

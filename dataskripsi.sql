@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2018 at 09:55 AM
+-- Generation Time: Dec 28, 2018 at 10:24 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -38,11 +38,40 @@ CREATE TABLE `tb_dosen` (
 --
 
 INSERT INTO `tb_dosen` (`nip`, `nama`) VALUES
+('', ''),
 ('057801172', 'Febrian Murti Dewanto, SE, M. Kom'),
 ('147801434', 'Khoiriya Latifah, S. Kom, M. Kom'),
+('148201433', 'Bambang Agus H, S. Kom, M. Kom'),
 ('158801493', 'Mega Novita, Ph.D'),
 ('1954101519820031003', 'Drs. Bambang Supriyadi, MP'),
 ('196209191994031003', 'Ir. Agung Handayanto, M. Kom');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_kelengkapan`
+--
+
+CREATE TABLE `tb_kelengkapan` (
+  `npm` varchar(16) NOT NULL,
+  `hardcopy_poster` tinyint(1) NOT NULL DEFAULT '0',
+  `manual_book` tinyint(1) NOT NULL DEFAULT '0',
+  `softcopy_skripsi` tinyint(1) NOT NULL DEFAULT '0',
+  `softcopy_artikel` tinyint(1) NOT NULL DEFAULT '0',
+  `softcopy_poster` tinyint(1) NOT NULL DEFAULT '0',
+  `sumbangan_buku` tinyint(1) NOT NULL DEFAULT '0',
+  `sertifikat_toefl` tinyint(1) NOT NULL DEFAULT '0',
+  `cd_skripsi` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_kelengkapan`
+--
+
+INSERT INTO `tb_kelengkapan` (`npm`, `hardcopy_poster`, `manual_book`, `softcopy_skripsi`, `softcopy_artikel`, `softcopy_poster`, `sumbangan_buku`, `sertifikat_toefl`, `cd_skripsi`) VALUES
+('14670006', 1, 1, 1, 1, 1, 1, 1, 1),
+('14670029', 1, 0, 0, 0, 0, 0, 0, 0),
+('14670030', 1, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -52,7 +81,7 @@ INSERT INTO `tb_dosen` (`nip`, `nama`) VALUES
 
 CREATE TABLE `tb_prodi` (
   `kode_prodi` varchar(5) NOT NULL,
-  `nama_prodi` varchar(100) NOT NULL
+  `nama_prodi` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -120,28 +149,34 @@ INSERT INTO `tb_ruang` (`id_ruang`, `nama_ruang`) VALUES
 --
 
 CREATE TABLE `tb_ujian_skripsi` (
-  `npm` varchar(16) NOT NULL,
-  `nama` varchar(128) NOT NULL,
-  `prodi` varchar(64) NOT NULL,
-  `judul` varchar(512) NOT NULL,
-  `tanggal` varchar(32) NOT NULL,
-  `jam` varchar(8) NOT NULL,
-  `ruang` varchar(8) NOT NULL,
-  `status` varchar(16) NOT NULL,
-  `nip_ketua` varchar(32) NOT NULL,
-  `nip_sekretaris` varchar(32) NOT NULL,
-  `nip_penguji1` varchar(32) NOT NULL,
-  `nip_penguji2` varchar(32) NOT NULL,
-  `nip_penguji3` varchar(32) NOT NULL,
-  `status_data` varchar(16) NOT NULL DEFAULT 'BELUM VALID'
+  `npm` varchar(16) NOT NULL DEFAULT '',
+  `nama` varchar(128) NOT NULL DEFAULT '',
+  `prodi` varchar(128) NOT NULL DEFAULT '',
+  `judul` varchar(512) NOT NULL DEFAULT '',
+  `tanggal` varchar(32) NOT NULL DEFAULT '',
+  `jam` varchar(8) NOT NULL DEFAULT '',
+  `ruang` varchar(8) NOT NULL DEFAULT '',
+  `status` varchar(16) NOT NULL DEFAULT '',
+  `nip_ketua` varchar(32) NOT NULL DEFAULT '',
+  `nip_sekretaris` varchar(32) NOT NULL DEFAULT '',
+  `nip_penguji1` varchar(32) NOT NULL DEFAULT '',
+  `nip_penguji2` varchar(32) NOT NULL DEFAULT '',
+  `nip_penguji3` varchar(32) NOT NULL DEFAULT '',
+  `status_data` varchar(32) NOT NULL DEFAULT 'BARU',
+  `status_berkas` varchar(32) NOT NULL DEFAULT 'BARU',
+  `berkas_skripsi` varchar(128) NOT NULL DEFAULT '',
+  `foto_usulan` varchar(128) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_ujian_skripsi`
 --
 
-INSERT INTO `tb_ujian_skripsi` (`npm`, `nama`, `prodi`, `judul`, `tanggal`, `jam`, `ruang`, `status`, `nip_ketua`, `nip_sekretaris`, `nip_penguji1`, `nip_penguji2`, `nip_penguji3`, `status_data`) VALUES
-('14670006', 'Agung Nur Wahyudi', 'Informatika S1', 'Sistem Pendukung Keputusan Penentu Status Warga Dengan Metode Simple Multi Atribute Rotin Technique (SMART) Di Desa Tawangsari Rembang', 'Selasa, 04 Desember 2018', '16:00', 'GP609', 'Ke-1', '1954101519820031003', '057801172', '158801493', '196209191994031003', '147801434', 'BELUM VALID');
+INSERT INTO `tb_ujian_skripsi` (`npm`, `nama`, `prodi`, `judul`, `tanggal`, `jam`, `ruang`, `status`, `nip_ketua`, `nip_sekretaris`, `nip_penguji1`, `nip_penguji2`, `nip_penguji3`, `status_data`, `status_berkas`, `berkas_skripsi`, `foto_usulan`) VALUES
+('14670006', 'Agung Nur Wahyudi', 'Informatika S1', 'Sistem Pendukung Keputusan Penentu Status Warga Dengan Metode Simple Multi Atribute Rotin Technique (SMART) Di Desa Tawangsari Rembang', 'Selasa, 04 Desember 2018', '16:00', 'GP609', 'Ke-1', '1954101519820031003', '057801172', '158801493', '196209191994031003', '147801434', 'VALID', 'VALID', 'upload/14670006/berkas_14670006.zip', 'upload/14670006/foto_usulan_14670006.jpeg'),
+('14670029', 'Novita Suryani', 'Informatika S1', 'Sistem Informasi Penjualan Persediaan Tapioka Pada UD. Lestari Jaya Dengan Model Web', 'Jumat, 07 Desember 2018', '9:00', 'GP609', 'Ke-1', '057801172', '147801434', '158801493', '1954101519820031003', '148201433', 'BELUM VALID', 'BELUM VALID', '', ''),
+('14670030', 'Agus', 'Informatika S1', '', '', '', '', '', '', '', '', '', '', 'DALAM PEMERIKSAAN', 'BELUM VALID', '', ''),
+('a', 'a', 'Teknik Elektro S1', 'a', 'Rabu, 26 Desember 2018', '15:43', 'GP602', '1', '057801172', '147801434', '148201433', '158801493', '1954101519820031003', 'BELUM VALID', 'BELUM VALID', '', '');
 
 -- --------------------------------------------------------
 
@@ -153,18 +188,20 @@ CREATE TABLE `tb_user` (
   `username` varchar(20) NOT NULL,
   `nama` varchar(128) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `profpic` varchar(100) NOT NULL,
-  `role` varchar(10) NOT NULL
+  `prodi` varchar(128) NOT NULL,
+  `profpic` varchar(100) NOT NULL DEFAULT 'dist/img/user.png',
+  `role` varchar(10) NOT NULL DEFAULT 'student'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`username`, `nama`, `password`, `profpic`, `role`) VALUES
-('14670006', 'Agung Nur Wahyudi', 'student123', 'dist/img/user2-160x160.jpg', 'student'),
-('admin1', 'Admin 1', 'admin123', 'dist/img/user2-160x160.jpg', 'admin'),
-('admin2', 'Admin 2', 'admin123', 'dist/img/user1-128x128.jpg', 'admin');
+INSERT INTO `tb_user` (`username`, `nama`, `password`, `prodi`, `profpic`, `role`) VALUES
+('14670006', 'Agung Nur Wahyudi', 'student123', 'Informatika S1', 'dist/img/user.png', 'student'),
+('14670030', 'Agus', 'student123', 'Informatika S1', 'dist/img/user.png', 'student'),
+('admin1', 'Admin 1', 'admin123', '', 'dist/img/user2-160x160.jpg', 'admin'),
+('admin2', 'Admin 2', 'admin123', '', 'dist/img/user1-128x128.jpg', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -175,6 +212,12 @@ INSERT INTO `tb_user` (`username`, `nama`, `password`, `profpic`, `role`) VALUES
 --
 ALTER TABLE `tb_dosen`
   ADD PRIMARY KEY (`nip`);
+
+--
+-- Indexes for table `tb_kelengkapan`
+--
+ALTER TABLE `tb_kelengkapan`
+  ADD PRIMARY KEY (`npm`);
 
 --
 -- Indexes for table `tb_prodi`
