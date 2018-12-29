@@ -81,13 +81,13 @@
             <div class="box-body">
             <?php
               if ($status_data!='VALID' && $status_berkas!='VALID') {
-                echo "<h3 class='box-title' style='color:red'>Data Dan Berkas Belum Divalidasi, Form Tidak Dapat Dicetak!</h3>";
+                echo "<h3 class='box-title' style='color:red'>Data Dan Berkas Belum Divalidasi, Form 1-9 Tidak Dapat Dicetak!</h3>";
               }else if ($status_data!='VALID' && $status_berkas=='VALID') {
-                echo "<h3 class='box-title' style='color:red'>Berkas Telah Divalidasi Tetapi Data Belum Divalidasi, Form Tidak Dapat Dicetak!</h3>";
+                echo "<h3 class='box-title' style='color:red'>Berkas Telah Divalidasi Tetapi Data Belum Divalidasi, Form 1-8 Tidak Dapat Dicetak!</h3>";
               }elseif ($status_data=='VALID' && $status_berkas!='VALID') {
-                echo "<h3 class='box-title' style='color:red'>Data Telah Divalidasi Tetapi Berkas Belum Divalidasi, Form Tidak Dapat Dicetak!</h3>";
+                echo "<h3 class='box-title' style='color:red'>Data Telah Divalidasi Tetapi Berkas Belum Divalidasi, Form 9 Tidak Dapat Dicetak!</h3>";
               }else{
-                echo "<h3 class='box-title' style='color:green'>Data Dan Berkas Telah Divalidasi, Form Dapat Dicetak!</h3>";            
+                echo "<h3 class='box-title' style='color:green'>Data Dan Berkas Telah Divalidasi, Form 1-9 Dapat Dicetak!</h3>";            
               }
             ?>
               <table id="example1" class="table table-bordered table-striped">
@@ -100,7 +100,7 @@
                 </thead>
                 <tbody>
                   <?php
-                    if ($status_data=='VALID' && $status_berkas=='VALID') {
+                    if ($status_data=='VALID') {
                   ?>
                   <tr>
                     <td>1</td>
@@ -167,22 +167,13 @@
                   </tr> 
                   <tr>
                     <td>8</td>
-                    <td>Form Kelengkapan</td>
-                    <td>
-                    <?php
-                      echo "<a href='cetak/formkelengkapan.php?id=".$id."' class='btn btn-group btn-info' target='_blank'>Cetak PDF</a>";
-                    ?>
-                    </td>
-                  </tr> 
-                  <tr>
-                    <td>9</td>
                     <td>Form Jadwal Pelaksanaan</td>
                     <td>
                     <?php
                       echo "<a href='cetak/formjadwal.php?id=".$id."' class='btn btn-group btn-info' target='_blank'>Cetak PDF</a>";
                     ?>
                     </td>
-                  </tr> 
+                  </tr>                   
                   <?php
                     } else {
                   ?>
@@ -251,15 +242,6 @@
                   </tr> 
                   <tr>
                     <td>8</td>
-                    <td>Form Kelengkapan</td>
-                    <td>
-                    <?php
-                      echo "<a href='#' class='btn btn-group btn-info' disabled>Cetak PDF</a>";
-                    ?>
-                    </td>
-                  </tr> 
-                  <tr>
-                    <td>9</td>
                     <td>Form Jadwal Pelaksanaan</td>
                     <td>
                     <?php
@@ -269,6 +251,31 @@
                   </tr> 
                   <?php
                     }
+                    if ($status_berkas=='VALID') {
+                  ?>
+                  <tr>
+                    <td>9</td>
+                    <td>Form Kelengkapan Berkas</td>
+                    <td>
+                    <?php
+                      echo "<a href='cetak/formkelengkapan.php?id=".$id."' class='btn btn-group btn-info' target='_blank'>Cetak PDF</a>";
+                    ?>
+                    </td>
+                  </tr>
+                  <?php
+                     } else {
+                  ?>
+                  <tr>
+                    <td>9</td>
+                    <td>Form Kelengkapan Berkas</td>
+                    <td>
+                    <?php
+                      echo "<a href='#' class='btn btn-group btn-info' disabled>Cetak PDF</a>";
+                    ?>
+                    </td>
+                  </tr>
+                  <?php
+                     }
                   ?>                    
                 </tbody>
               </table>
