@@ -98,6 +98,7 @@
       if (mysqli_num_rows($result) > 0 ) { 
         while($data = mysqli_fetch_array($result)){
           $berkas=str_replace("upload/".$id."/", "", $data['berkas_skripsi']);
+          $berkas_skripsi=$data['berkas_skripsi'];
           $status_berkas=$data['status_berkas'];
         }
     ?>
@@ -110,7 +111,7 @@
           <input type="text" class="form-control" name="nama" value="<?php echo $berkas;?>" readonly>
         </div>
         <div class="col-md-3" >
-          <a href="<?php echo $data['berkas_skripsi'];?>" class="btn btn-block btn-success"><i class="fa fa-download"></i> Download Berkas </a>
+          <a href="<?php echo $berkas_skripsi;?>" class="btn btn-block btn-success"><i class="fa fa-download"></i> Download Berkas </a>
         </div>
       </div>
       <!-- </div> -->
