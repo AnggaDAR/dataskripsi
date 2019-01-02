@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2018 at 10:24 AM
+-- Generation Time: Jan 02, 2019 at 08:46 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -70,8 +70,8 @@ CREATE TABLE `tb_kelengkapan` (
 
 INSERT INTO `tb_kelengkapan` (`npm`, `hardcopy_poster`, `manual_book`, `softcopy_skripsi`, `softcopy_artikel`, `softcopy_poster`, `sumbangan_buku`, `sertifikat_toefl`, `cd_skripsi`) VALUES
 ('14670006', 1, 1, 1, 1, 1, 1, 1, 1),
-('14670029', 1, 0, 0, 0, 0, 0, 0, 0),
-('14670030', 1, 0, 0, 0, 0, 0, 0, 0);
+('14670029', 0, 0, 0, 0, 0, 0, 0, 0),
+('14670030', 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -173,10 +173,9 @@ CREATE TABLE `tb_ujian_skripsi` (
 --
 
 INSERT INTO `tb_ujian_skripsi` (`npm`, `nama`, `prodi`, `judul`, `tanggal`, `jam`, `ruang`, `status`, `nip_ketua`, `nip_sekretaris`, `nip_penguji1`, `nip_penguji2`, `nip_penguji3`, `status_data`, `status_berkas`, `berkas_skripsi`, `foto_usulan`) VALUES
-('14670006', 'Agung Nur Wahyudi', 'Informatika S1', 'Sistem Pendukung Keputusan Penentu Status Warga Dengan Metode Simple Multi Atribute Rotin Technique (SMART) Di Desa Tawangsari Rembang', 'Selasa, 04 Desember 2018', '16:00', 'GP609', 'Ke-1', '1954101519820031003', '057801172', '158801493', '196209191994031003', '147801434', 'VALID', 'VALID', 'upload/14670006/berkas_14670006.zip', 'upload/14670006/foto_usulan_14670006.jpeg'),
+('14670006', 'Agung Nur Wahyudi', 'Informatika S1', 'Sistem Pendukung Keputusan Penentu Status Warga Dengan Metode Simple Multi Atribute Rotin Technique (SMART) Di Desa Tawangsari Rembang', 'Selasa, 04 Desember 2018', '16:00', 'GP609', 'Ke-1', '1954101519820031003', '057801172', '158801493', '196209191994031003', '147801434', 'BELUM VALID', 'VALID', 'upload/14670006/berkas_14670006.zip', 'upload/14670006/foto_usulan_14670006.jpeg'),
 ('14670029', 'Novita Suryani', 'Informatika S1', 'Sistem Informasi Penjualan Persediaan Tapioka Pada UD. Lestari Jaya Dengan Model Web', 'Jumat, 07 Desember 2018', '9:00', 'GP609', 'Ke-1', '057801172', '147801434', '158801493', '1954101519820031003', '148201433', 'BELUM VALID', 'BELUM VALID', '', ''),
-('14670030', 'Agus', 'Informatika S1', '', '', '', '', '', '', '', '', '', '', 'DALAM PEMERIKSAAN', 'BELUM VALID', '', ''),
-('a', 'a', 'Teknik Elektro S1', 'a', 'Rabu, 26 Desember 2018', '15:43', 'GP602', '1', '057801172', '147801434', '148201433', '158801493', '1954101519820031003', 'BELUM VALID', 'BELUM VALID', '', '');
+('14670030', 'Agus', 'Informatika S1', '', '', '', '', '', '', '', '', '', '', 'DALAM PEMERIKSAAN', 'BELUM VALID', '', '');
 
 -- --------------------------------------------------------
 
@@ -199,6 +198,7 @@ CREATE TABLE `tb_user` (
 
 INSERT INTO `tb_user` (`username`, `nama`, `password`, `prodi`, `profpic`, `role`) VALUES
 ('14670006', 'Agung Nur Wahyudi', 'student123', 'Informatika S1', 'dist/img/user.png', 'student'),
+('14670029', 'Novita Suryani', 'student123', 'Informatika S1', 'dist/img/user.png', 'student'),
 ('14670030', 'Agus', 'student123', 'Informatika S1', 'dist/img/user.png', 'student'),
 ('admin1', 'Admin 1', 'admin123', '', 'dist/img/user2-160x160.jpg', 'admin'),
 ('admin2', 'Admin 2', 'admin123', '', 'dist/img/user1-128x128.jpg', 'admin');
